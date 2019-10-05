@@ -2,5 +2,4 @@ tool
 extends EditorScript
 
 func _run():
-	var pool_array = PoolVector2Array([Vector2(2, 5), Vector2(5, 1), Vector2(-4, 3)])
-	print(ConvexPolygonArea.get_convex_polygon_area(pool_array))
+	print(StringPoolConverter.string_to_pool_array("[(-100.5, -55.5), (-99.5, -59.5), (-97.5, -63.5), (-94.5, -66), (-52.5, -79), (-51, -79), (-12, -77.5), (23, -66.5), (63.5, -39.5), (69.5, -33), (73, -26), (73, -14), (71, -6.5), (34, 29), (-11.5, 34), (-14.5, 34), (-57.5, 17.5), (-94, -9.5), (-96, -11.5), (-96.5, -13.5), (-100.5, -47), (-100.5, -55.5)]"))

@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "PlayerCar",
 "language": "GDScript",
 "path": "res://car/PlayerCar.gd"
+}, {
+"base": "Reference",
+"class": "StringPoolConverter",
+"language": "GDScript",
+"path": "res://test/StringPoolConverter.gd"
 } ]
 _global_script_class_icons={
 "BaseCar": "",
 "Bullet": "",
 "ConvexPolygonArea": "",
-"PlayerCar": ""
+"PlayerCar": "",
+"StringPoolConverter": ""
 }
 
 [application]
