@@ -43,4 +43,7 @@ func clear():
 
 
 func get_convex_hull():
-	return Geometry.convex_hull_2d(line.points)
+	var hull_points = PoolVector2Array()
+	for point in line.points:
+		hull_points.append(point - rect_size / 2)
+	return Geometry.convex_hull_2d(hull_points)

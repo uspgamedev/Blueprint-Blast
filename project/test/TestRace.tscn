@@ -8,8 +8,7 @@
 [node name="Terrain" parent="." instance=ExtResource( 1 )]
 
 [node name="PlayerCar" parent="." instance=ExtResource( 2 )]
-position = Vector2( 43.5525, -62.9287 )
+position = Vector2( 156.969, -404.928 )
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCar"]
 current = true
-

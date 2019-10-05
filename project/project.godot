@@ -36,6 +36,10 @@ config/name="LD45"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+CarMaker="*res://CarMaker.tscn"
+
 [input]
 
 accelerate={
