@@ -14,3 +14,13 @@ func _ready():
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
 	Global.car_refs.append(self)
+
+func shoot():
+	var bullet = load(BULLET_PATH).instance()
+	bullet.global_rotation = global_rotation
+	bullet.add_collision_exception_with(self)
+	bullet.add_collision_exception_with(front_wheel)
+	bullet.add_collision_exception_with(back_wheel)
+	bullet.global_position = global_position
+	Global.add_child(bullet)
+	$BulletCooldown.start()
