@@ -1,24 +1,22 @@
-extends KinematicBody2D
+extends RigidBody2D
 class_name Bullet
 
-const VELOCITY = 5
+const VELOCITY = 300
 const DAMAGE = 20
 const LIFETIME = 5
 const EXPLOSION_FORCE = 150
 const RADIUS = 60
 
+var shooter
+
 func _ready():
 	$Lifetime.wait_time = LIFETIME
 	$Lifetime.start()
 	$Lifetime.connect("timeout", self, "obliterate")
+	linear_velocity = Vector2(1, 0).rotated(global_rotation) * VELOCITY
 
 func obliterate():
 	queue_free()
-
-func _physics_process(delta):
-	var collision : KinematicCollision2D = move_and_collide(Vector2(1, 0).rotated(global_rotation) * VELOCITY)
-	if collision != null:
-		explode()
 
 func explode():
 	for car in Global.car_refs:
@@ -29,3 +27,8 @@ func explode():
 		randomize()
 		car.angular_velocity += vector.normalized().x * impulse/20
 	obliterate()
+
+
+func _on_Bullet_body_entered(body):
+	if body != shooter:
+		explode()

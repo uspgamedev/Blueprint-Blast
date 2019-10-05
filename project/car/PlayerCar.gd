@@ -28,6 +28,8 @@ func handle_shooting():
 			var bullet = load(BULLET_PATH).instance()
 			bullet.global_rotation = global_rotation
 			bullet.add_collision_exception_with(self)
+			bullet.add_collision_exception_with(front_wheel)
+			bullet.add_collision_exception_with(back_wheel)
 			bullet.global_position = global_position
 			Global.add_child(bullet)
 			$BulletCooldown.start()
@@ -46,7 +48,6 @@ func update_movement():
 	linear_velocity = linear_velocity.normalized() * min(linear_velocity.length(), max_velocity)
 
 func update_movement_with_wheels():
-	var force = 20
 	if Input.is_action_pressed("accelerate"):
 		back_wheel.apply_torque_impulse(force)
 		front_wheel.apply_torque_impulse(force)
