@@ -1,6 +1,8 @@
 [gd_scene format=2]
 
 [node name="Terrain" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -89.9277, 42.1445, 90.7354, 77.5995, 182.042, 38.1367, 270.267, 35.5287, 347.384, 76.9388, 425.009, 69.0879, 507.722, 41.865, 578.991, 42.0056, 673.07, 80.2792, 821.007, 59.7389, 878.99, 30.1171, 947.827, -25.7066, 1036.73, -56.8874, 1049.33, 126.217, -90.8681, 128.879 )

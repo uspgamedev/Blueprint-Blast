@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Bullet",
+"language": "GDScript",
+"path": "res://bullets/Bullet.gd"
+}, {
 "base": "Reference",
 "class": "ConvexPolygonArea",
 "language": "GDScript",
 "path": "res://math/ConvexPolygonArea.gd"
+}, {
+"base": "RigidBody2D",
+"class": "PlayerCar",
+"language": "GDScript",
+"path": "res://car/PlayerCar.gd"
 } ]
 _global_script_class_icons={
-"ConvexPolygonArea": ""
+"Bullet": "",
+"ConvexPolygonArea": "",
+"PlayerCar": ""
 }
 
 [application]
@@ -55,6 +67,12 @@ shoot={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Cars"
+2d_physics/layer_2="Terrain"
+2d_physics/layer_3="Bullets"
 
 [rendering]
 
