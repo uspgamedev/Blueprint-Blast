@@ -1,7 +1,7 @@
 extends RigidBody2D
 class_name Bullet
 
-const VELOCITY = 300
+const VELOCITY = 500
 const DAMAGE = 20
 const LIFETIME = 5
 const EXPLOSION_FORCE = 150

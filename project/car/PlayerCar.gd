@@ -14,6 +14,10 @@ func _ready():
 	if main.get("car_refs"):
 		main.car_refs.append(self)
 	if CarMaker.state == CarMaker.States.DONE:
+		#Cannon
+		for line in CarMaker.cannon:
+			if (line):
+				$Cannon.add_child(line)
 
 		#Chassis
 		$CollisionShape2D.shape.points = CarMaker.convex_hull
@@ -35,7 +39,7 @@ func _ready():
 			if (line):
 				front_wheel.add_child(line)
 		front_wheel.get_parent().set_wheel_polygon(CarMaker.right_wheel_hull)
-		
+
 		#Bullet
 		bullet_info["hull"] = CarMaker.projectile_hull
 		bullet_info["line"] = CarMaker.projectile_line
@@ -51,7 +55,9 @@ func _physics_process(delta):
 func handle_shooting():
 	if Input.is_action_just_pressed("shoot"):
 		if $BulletCooldown.time_left == 0:
-			shoot(bullet_info)
+			shoot(bullet_info, $Cannon.global_position)
+			$BulletCooldown.start()
+			$BulletCooldown.start()
 
 func update_movement_with_wheels():
 	if Input.is_action_pressed("accelerate"):

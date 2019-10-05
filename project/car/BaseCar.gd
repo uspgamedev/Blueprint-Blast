@@ -6,7 +6,7 @@ const BULLET_PATH = "res://bullets/Bullet.tscn"
 var force = 200
 var max_velocity = 200
 var acceleration = 100
-var bullet_cooldown = .2
+var bullet_cooldown = .5
 onready var front_wheel = get_node("FrontWheel/SpinningBody")
 onready var back_wheel = get_node("BackWheel/SpinningBody")
 
@@ -15,14 +15,17 @@ func _ready():
 	$BulletCooldown.wait_time = bullet_cooldown
 	Global.car_refs.append(self)
 
-func shoot(bullet_info):
+func shoot(bullet_info, pos):
 	if Global.race_state == Global.RACE_STATE.RACE:
 		var bullet = load(BULLET_PATH).instance()
 		bullet.global_rotation = global_rotation
 		bullet.add_collision_exception_with(self)
 		bullet.add_collision_exception_with(front_wheel)
 		bullet.add_collision_exception_with(back_wheel)
-		bullet.global_position = global_position
+		if pos:
+			bullet.global_position = pos
+		else:
+			bullet.global_position = global_position
 		if bullet_info:
 			bullet.add_child(bullet_info["line"].duplicate())
 			for line in bullet_info["deco"]:
