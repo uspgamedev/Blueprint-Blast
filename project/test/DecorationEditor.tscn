@@ -17,23 +17,43 @@ margin_bottom = 463.36
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 894.0
-margin_bottom = 438.0
+margin_bottom = 478.0
 
 [node name="DecorationCanvas" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 2 )]
 margin_right = 600.0
-margin_bottom = 438.0
+margin_bottom = 478.0
 rect_min_size = Vector2( 600, 100 )
 
-[node name="ColorPicker" type="ColorPicker" parent="VBoxContainer/HBoxContainer2"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 604.0
 margin_right = 894.0
-margin_bottom = 438.0
+margin_bottom = 478.0
+custom_constants/separation = 4
+
+[node name="ColorPicker" type="ColorPicker" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_right = 290.0
+margin_bottom = 440.0
+color = Color( 0, 0, 0, 1 )
 edit_alpha = false
 
+[node name="LineWidth" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 444.0
+margin_right = 290.0
+margin_bottom = 458.0
+text = "Line Width: 10"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 462.0
+margin_right = 290.0
+margin_bottom = 478.0
+min_value = 1.0
+max_value = 30.0
+value = 10.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 442.0
+margin_top = 482.0
 margin_right = 894.0
-margin_bottom = 462.0
+margin_bottom = 502.0
 
 [node name="Undo" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_right = 46.0
@@ -52,6 +72,8 @@ margin_right = 154.0
 margin_bottom = 20.0
 text = "Accept"
 
+[connection signal="color_changed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/ColorPicker" to="." method="_on_ColorPicker_color_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Undo" to="." method="_on_Undo_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Accept" to="." method="_on_Accept_pressed"]
