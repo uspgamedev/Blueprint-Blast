@@ -18,12 +18,12 @@ func _on_Clear_pressed():
 
 func _on_Accept_pressed():
 	if CarMaker.state == CarMaker.States.CHASSIS_DECO:
+		canvas.drawing_scale = .3
+		CarMaker.chassis_deco = canvas.get_scaled_lines()
+		for line in CarMaker.chassis_deco:
+			line.position -= canvas.rect_size / 2
+			
 		CarMaker.state = CarMaker.States.LEFT_WHEEL
-		CarMaker.chassis_deco = []
-		for line in canvas.lines:
-			var new_line = line.duplicate()
-			new_line.position -= canvas.rect_size / 2
-			CarMaker.chassis_deco.append(new_line)
 		get_tree().change_scene("res://test/Editor.tscn")
 
 

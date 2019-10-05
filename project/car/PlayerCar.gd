@@ -12,7 +12,7 @@ func _ready():
 		main.car_refs.append(self)
 	if CarMaker.state == CarMaker.States.DONE:
 		$CollisionShape2D.shape.points = CarMaker.convex_hull
-		add_child(CarMaker.chassis_line.duplicate())
+		add_child(CarMaker.chassis_line)
 		for line in CarMaker.chassis_deco:
 			if (line):
 				add_child(line)

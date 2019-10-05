@@ -7,6 +7,7 @@ const POINTS_DIST = 1
 
 var is_drawing = false
 var can_draw = true
+var drawing_scale = 1
 var time = 0
 
 func _input(event):
@@ -41,9 +42,22 @@ func clear():
 	line.points = PoolVector2Array([])
 	can_draw = true
 
+func get_line():
+	return line.duplicate()
+
+func get_scaled_line():
+	var scaled_line = line.duplicate()
+	var center = rect_size/2
+	for i in range(scaled_line.get_point_count()):
+		var point = scaled_line.points[i]
+		scaled_line.set_point_position(i, center + (point - center)*drawing_scale)
+	scaled_line.width *= drawing_scale
+	return scaled_line
 
 func get_convex_hull():
 	var hull_points = PoolVector2Array()
+	var center = rect_size/2
 	for point in line.points:
+		point = center + (point - center)*drawing_scale
 		hull_points.append(point - rect_size / 2)
 	return Geometry.convex_hull_2d(hull_points)

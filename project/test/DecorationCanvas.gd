@@ -9,6 +9,7 @@ var line_color = Color.black
 var line_width = 10
 var time = 0
 var is_drawing = false
+var drawing_scale = 1
 
 func _input(event):
 
@@ -64,6 +65,18 @@ func new_line():
 	add_child(line)
 	lines.append(line)
 
+
+func get_scaled_lines():
+	var scaled_lines = []
+	for line in lines:
+		var scaled_line = line.duplicate()
+		var center = rect_size/2
+		for i in range(scaled_line.get_point_count()):
+			var point = scaled_line.points[i]
+			scaled_line.set_point_position(i, center + (point - center)*drawing_scale)
+		scaled_line.width *= drawing_scale
+		scaled_lines.append(scaled_line)
+	return scaled_lines
 
 func change_color(color):
 	line_color = color
