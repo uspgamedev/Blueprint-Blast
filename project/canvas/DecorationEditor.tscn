@@ -31,7 +31,7 @@ custom_constants/separation = 4
 [node name="ColorPicker" type="ColorPicker" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
 margin_right = 290.0
 margin_bottom = 438.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.898039, 0.380392, 0, 1 )
 edit_alpha = false
 
 [node name="LineWidth" type="Label" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
