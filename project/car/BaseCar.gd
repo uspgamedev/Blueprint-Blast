@@ -24,3 +24,12 @@ func shoot():
 	bullet.global_position = global_position
 	Global.add_child(bullet)
 	$BulletCooldown.start()
+
+func go_forward():
+	back_wheel.apply_torque_impulse(force)
+	front_wheel.apply_torque_impulse(force)
+	
+func go_backward():
+	back_wheel.apply_torque_impulse(-force)
+	front_wheel.apply_torque_impulse(-force)
+	

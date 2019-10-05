@@ -1,15 +1,16 @@
 extends BaseCar
 
+export var ai_force = 120
+
 func _ready():
-	force = 20
+	force = ai_force
 
 func _physics_process(delta):
 	update_movement()
 	handle_shooting()
 
 func update_movement():
-	back_wheel.apply_torque_impulse(force)
-	front_wheel.apply_torque_impulse(force)
+	go_forward()
 
 func handle_shooting():
 	for car in Global.car_refs:

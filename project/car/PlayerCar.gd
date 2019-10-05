@@ -49,11 +49,9 @@ func handle_shooting():
 
 func update_movement_with_wheels():
 	if Input.is_action_pressed("accelerate"):
-		back_wheel.apply_torque_impulse(force)
-		front_wheel.apply_torque_impulse(force)
+		go_forward()
 	if Input.is_action_pressed("reverse"):
-		back_wheel.apply_torque_impulse(-force)
-		front_wheel.apply_torque_impulse(-force)
+		go_backward()
 
 	var force = Vector2(0, 0)
 	if Input.is_action_pressed("rotate_clockwise"):
