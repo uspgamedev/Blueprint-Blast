@@ -1,7 +1,7 @@
 extends Control
 
 onready var canvas = $VBoxContainer/HBoxContainer2/DecorationCanvas
-var scale = 0.2
+var scale = 1
 
 func _ready():
 	$Label.text = CarMaker.STATES_NAME[CarMaker.state]
