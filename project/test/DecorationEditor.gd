@@ -3,7 +3,8 @@ extends Control
 onready var canvas = $VBoxContainer/HBoxContainer2/DecorationCanvas
 
 func _ready():
-	pass
+	if CarMaker.outline:
+		canvas.add_child(CarMaker.outline)
 
 
 func _on_Undo_pressed():
@@ -15,7 +16,12 @@ func _on_Clear_pressed():
 
 
 func _on_Accept_pressed():
-	pass # Replace with function body.
+	CarMaker.chassis_deco = []
+	for line in canvas.lines:
+		var new_line = line.duplicate()
+		new_line.position -= canvas.rect_size / 2
+		CarMaker.chassis_deco.append(new_line)
+	get_tree().change_scene("res://test/TestRace.tscn")
 
 
 func _on_ColorPicker_color_changed(color):

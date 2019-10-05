@@ -14,11 +14,20 @@ onready var wheel_2 : RigidBody2D = $Wheel2
 func _ready():
 	friction = 0.2
 	$BulletCooldown.wait_time = BULLET_COOLDOWN
-	main.car_refs.append(self)
+	if main.get("car_refs"):
+		main.car_refs.append(self)
+	if CarMaker.convex_hull:
+		$CollisionShape2D.shape.points = CarMaker.convex_hull
+		add_child(CarMaker.chassis_line.duplicate())
+		for line in CarMaker.chassis_deco:
+			if (line):
+				add_child(line)
+
 
 func _physics_process(delta):
 	update_movement_with_wheels()
 	handle_shooting()
+
 
 func handle_shooting():
 	if Input.is_action_just_pressed("shoot"):
@@ -51,7 +60,7 @@ func update_movement_with_wheels():
 	if Input.is_action_pressed("reverse"):
 		wheel_1.apply_torque_impulse(-force)
 		wheel_2.apply_torque_impulse(-force)
-	
+
 	if Input.is_action_pressed("rotate_clockwise"):
 		angular_velocity += 0.1
 	if Input.is_action_pressed("rotate_counter_clockwise"):
