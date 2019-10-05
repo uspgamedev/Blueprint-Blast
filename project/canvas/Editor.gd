@@ -37,6 +37,17 @@ func _on_Accept_pressed():
 		CarMaker.right_wheel_hull = canvas.get_convex_hull()
 		CarMaker.right_wheel_line = canvas.get_scaled_line()
 		CarMaker.right_wheel_line.position -= canvas.rect_size / 2
+		CarMaker.outline = null
 		
-		CarMaker.state = CarMaker.States.DONE
-		get_tree().change_scene("res://test/TestRace.tscn")
+		CarMaker.state = CarMaker.States.CANNON
+		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+	
+	elif CarMaker.state == CarMaker.States.PROJECTILE:
+		canvas.drawing_scale = .2
+		CarMaker.projectile_hull = canvas.get_convex_hull()
+		CarMaker.outline = canvas.get_line()
+		CarMaker.projectile_line = canvas.get_scaled_line()
+		CarMaker.projectile_line.position -= canvas.rect_size / 2
+		
+		CarMaker.state = CarMaker.States.PROJECTILE_DECO
+		get_tree().change_scene("res://canvas/DecorationEditor.tscn")

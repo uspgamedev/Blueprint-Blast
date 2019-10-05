@@ -29,7 +29,23 @@ func _on_Accept_pressed():
 			
 		CarMaker.state = CarMaker.States.LEFT_WHEEL
 		get_tree().change_scene("res://canvas/Editor.tscn")
-
+	elif CarMaker.state == CarMaker.States.CANNON:
+		canvas.drawing_scale = .3
+		CarMaker.cannon = canvas.get_scaled_lines()
+		for line in CarMaker.cannon:
+			line.position -= canvas.rect_size / 2
+			
+		CarMaker.state = CarMaker.States.PROJECTILE
+		get_tree().change_scene("res://canvas/Editor.tscn")
+	
+	elif CarMaker.state == CarMaker.States.PROJECTILE_DECO:
+		canvas.drawing_scale = .3
+		CarMaker.projectile_deco = canvas.get_scaled_lines()
+		for line in CarMaker.projectile_deco:
+			line.position -= canvas.rect_size / 2
+			
+		CarMaker.state = CarMaker.States.DONE
+		get_tree().change_scene("res://test/TestRace.tscn")
 
 func _on_ColorPicker_color_changed(color):
 	canvas.change_color(color)
