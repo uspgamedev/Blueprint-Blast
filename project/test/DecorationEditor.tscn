@@ -50,6 +50,7 @@ margin_bottom = 476.0
 min_value = 1.0
 max_value = 30.0
 value = 10.0
+ticks_on_borders = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 480.0
