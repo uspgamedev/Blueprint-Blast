@@ -6,6 +6,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+visible = false
 position = Vector2( 4.61206, -7.25123 )
 rotation = 0.481208
 node_a = NodePath("../..")
@@ -16,6 +17,7 @@ rest_length = 10.0
 damping = 16.0
 
 [node name="DampedSpringJoint2D2" type="DampedSpringJoint2D" parent="."]
+visible = false
 position = Vector2( -4.05366, -8.17032 )
 rotation = -0.467172
 node_a = NodePath("../..")
@@ -28,4 +30,4 @@ damping = 16.0
 [node name="Polygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.732994, -3.62001 )
 scale = Vector2( 2.08946, 2.44153 )
-polygon = PoolVector2Array( -2.49677, 0.724261, -0.540138, -1.00707, 2.68622, -1.2748, 3.7478, 0.974143, 3.35231, 3.11599, -0.769105, 4.20476, -2.60084, 2.52698 )
+polygon = PoolVector2Array( -0.428307, -0.936507, 0.60394, -0.964114, 1.57167, -0.761668, 2.25984, -0.338374, 2.70069, 0.324174, 2.948, 1.17076, 2.78672, 2.60628, 2.03403, 3.44367, 0.679209, 3.79335, -0.686369, 3.84856, -1.51432, 3.66452, -2.29926, 3.07559, -2.71861, 2.39464, -2.79387, 1.66767, -2.54657, 0.903903, -2.15947, 0.222951, -1.47131, -0.448799, -0.94443, -0.743264 )
