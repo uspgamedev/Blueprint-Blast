@@ -25,14 +25,7 @@ func _physics_process(delta):
 func handle_shooting():
 	if Input.is_action_just_pressed("shoot"):
 		if $BulletCooldown.time_left == 0:
-			var bullet = load(BULLET_PATH).instance()
-			bullet.global_rotation = global_rotation
-			bullet.add_collision_exception_with(self)
-			bullet.add_collision_exception_with(front_wheel)
-			bullet.add_collision_exception_with(back_wheel)
-			bullet.global_position = global_position
-			Global.add_child(bullet)
-			$BulletCooldown.start()
+			shoot()
 
 func update_movement():
 	var vector := Vector2(0, 0)
