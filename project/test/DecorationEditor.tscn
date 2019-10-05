@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://test/DecorationCanvas.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test/DecorationEditor.gd" type="Script" id=1]
+[ext_resource path="res://test/DecorationCanvas.tscn" type="PackedScene" id=2]
 
 [node name="DecorationEditor" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.29236
 margin_right = 1.29236
+script = ExtResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_top = 1.36035
@@ -17,7 +19,7 @@ margin_bottom = 463.36
 margin_right = 894.0
 margin_bottom = 438.0
 
-[node name="DecorationCanvas" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
+[node name="DecorationCanvas" parent="VBoxContainer/HBoxContainer2" instance=ExtResource( 2 )]
 margin_right = 600.0
 margin_bottom = 438.0
 rect_min_size = Vector2( 600, 100 )
@@ -50,3 +52,6 @@ margin_right = 154.0
 margin_bottom = 20.0
 text = "Accept"
 
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Undo" to="." method="_on_Undo_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Accept" to="." method="_on_Accept_pressed"]

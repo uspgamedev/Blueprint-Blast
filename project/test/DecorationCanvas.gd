@@ -4,6 +4,7 @@ const POINTS_TIME = .01
 const POINTS_DIST = 1
 
 var lines = []
+var lines_backup = []
 var line_color = Color.black
 var line_width = 10
 var time = 0
@@ -40,9 +41,15 @@ func undo():
 	if lines.size():
 		remove_child(lines.back())
 		lines.pop_back()
+	else:
+		lines = lines_backup
+		for line in lines:
+			add_child(line)
+		lines_backup = []
 
 
 func clear():
+	lines_backup = lines.duplicate()
 	for line in lines:
 		remove_child(line)
 	lines = []
