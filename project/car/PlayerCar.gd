@@ -16,6 +16,8 @@ func _ready():
 		for line in CarMaker.chassis_deco:
 			if (line):
 				add_child(line)
+#		back_wheel.set_wheel_polygon(CarMaker.left_wheel_line.points)
+#		front_wheel.set_wheel_polygon(CarMaker.right_wheel_line.points)
 
 func _physics_process(delta):
 	update_movement_with_wheels()
