@@ -11,6 +11,6 @@ static func get_convex_polygon_area(pool_array : PoolVector2Array) -> float:
 		var lower_point = pool_array[(i + 1) % pool_array.size()]
 		left_summation += upper_point.x * lower_point.y
 		right_summation += upper_point.y * lower_point.x
-	rv = constant * (right_summation - left_summation)
+	rv = constant * (left_summation - right_summation)
 	assert(rv >= 0)
 	return rv

@@ -39,7 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD45"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://canvas/Editor.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -89,6 +89,10 @@ canvas_click={
 2d_physics/layer_1="Cars"
 2d_physics/layer_2="Terrain"
 2d_physics/layer_3="Bullets"
+
+[physics]
+
+2d/default_gravity=300
 
 [rendering]
 

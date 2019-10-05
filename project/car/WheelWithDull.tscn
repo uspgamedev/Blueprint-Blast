@@ -14,7 +14,6 @@ collision_mask = 6
 [node name="Polygon2D" type="CollisionPolygon2D" parent="SpinningBody"]
 
 [node name="Spring" type="DampedSpringJoint2D" parent="SpinningBody"]
-visible = false
 position = Vector2( -0.124736, -11.5171 )
 node_a = NodePath("../../..")
 node_b = NodePath("../../Dull")
@@ -24,7 +23,6 @@ stiffness = 10.0
 damping = 0.5
 
 [node name="JointUp" type="GrooveJoint2D" parent="SpinningBody"]
-visible = false
 position = Vector2( -0.242981, -11.7442 )
 node_a = NodePath("../../..")
 node_b = NodePath("../../Dull")
@@ -32,7 +30,6 @@ length = 15.0
 initial_offset = 5.0
 
 [node name="JointDown" type="GrooveJoint2D" parent="SpinningBody"]
-visible = false
 position = Vector2( -0.242981, 3.23979 )
 node_a = NodePath("../../Dull")
 node_b = NodePath("../../..")
@@ -47,7 +44,5 @@ collision_mask = 0
 shape = SubResource( 1 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Dull"]
-visible = false
-position = Vector2( -8.59661, 6.89618 )
 node_a = NodePath("../../SpinningBody")
 node_b = NodePath("..")
