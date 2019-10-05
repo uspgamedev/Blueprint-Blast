@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://car/PlayerCar.gd" type="Script" id=1]
 [ext_resource path="res://car/Wheel.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 [node name="PlayerCar" type="RigidBody2D"]
 collision_mask = 6
 script = ExtResource( 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -17.7869, 2.62042, -17.0544, -2.99556, -11.1942, -4.09434, -8.01998, -10.0766, 4.9212, -10.0766, 12.8568, -4.09434, 20.9145, -3.72808, 26.4084, -1.40844, 26.6526, 3.10876, 14.6881, 3.10876, 12.2339, 3.49223, 9.66976, 3.31796, 7.48502, 3.10876, -3.13652, 3.10876, -5.11745, 3.41754, -6.90983, 3.1686, -10.2175, 3.23085 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
 
 [node name="BulletCooldown" type="Timer" parent="."]
 one_shot = true

@@ -35,5 +35,13 @@ margin_left = 48.0
 margin_right = 104.0
 margin_bottom = 20.0
 text = "Accept"
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+text = "CURRENT STEP"
+align = 1
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Clear" to="." method="_on_Clear_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Accept" to="." method="_on_Accept_pressed"]

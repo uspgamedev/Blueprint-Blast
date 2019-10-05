@@ -2,8 +2,20 @@ extends BaseCar
 class_name PlayerCar
 
 func _ready():
+	
+	var main = get_parent()
 	front_wheel = $FrontWheel
 	back_wheel = $BackWheel
+	friction = 0.2
+	$BulletCooldown.wait_time = bullet_cooldown
+	if main.get("car_refs"):
+		main.car_refs.append(self)
+	if CarMaker.state == CarMaker.States.DONE:
+		$CollisionShape2D.shape.points = CarMaker.convex_hull
+		add_child(CarMaker.chassis_line.duplicate())
+		for line in CarMaker.chassis_deco:
+			if (line):
+				add_child(line)
 
 func _physics_process(delta):
 	update_movement_with_wheels()
