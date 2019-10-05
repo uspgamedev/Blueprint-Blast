@@ -16,20 +16,23 @@ func _ready():
 	Global.car_refs.append(self)
 
 func shoot():
-	var bullet = load(BULLET_PATH).instance()
-	bullet.global_rotation = global_rotation
-	bullet.add_collision_exception_with(self)
-	bullet.add_collision_exception_with(front_wheel)
-	bullet.add_collision_exception_with(back_wheel)
-	bullet.global_position = global_position
-	Global.add_child(bullet)
-	$BulletCooldown.start()
+	if Global.race_state == Global.RACE_STATE.RACE:
+		var bullet = load(BULLET_PATH).instance()
+		bullet.global_rotation = global_rotation
+		bullet.add_collision_exception_with(self)
+		bullet.add_collision_exception_with(front_wheel)
+		bullet.add_collision_exception_with(back_wheel)
+		bullet.global_position = global_position
+		Global.add_child(bullet)
+		$BulletCooldown.start()
 
 func go_forward():
-	back_wheel.apply_torque_impulse(force)
-	front_wheel.apply_torque_impulse(force)
+	if Global.race_state == Global.RACE_STATE.RACE:
+		back_wheel.apply_torque_impulse(force)
+		front_wheel.apply_torque_impulse(force)
 	
 func go_backward():
-	back_wheel.apply_torque_impulse(-force)
-	front_wheel.apply_torque_impulse(-force)
+	if Global.race_state == Global.RACE_STATE.RACE:
+		back_wheel.apply_torque_impulse(-force)
+		front_wheel.apply_torque_impulse(-force)
 	

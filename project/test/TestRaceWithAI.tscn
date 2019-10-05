@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://race/RaceController.gd" type="Script" id=1]
+[ext_resource path="res://terrain/ProceduralTerrain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://car/PlayerCarWithWheels.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ai/AICar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+
+[node name="RaceController" type="Node"]
+script = ExtResource( 1 )
+
+[node name="RaceTrack" type="Node2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Terrain" parent="RaceTrack" instance=ExtResource( 2 )]
+
+[node name="PlayerCar" parent="RaceTrack" instance=ExtResource( 3 )]
+position = Vector2( 205.307, -197.279 )
+
+[node name="Camera2D" type="Camera2D" parent="RaceTrack/PlayerCar"]
+current = true
+
+[node name="AICar" parent="RaceTrack" instance=ExtResource( 4 )]
+position = Vector2( 457.353, -202.261 )
+ai_force = 150
+
+[node name="AICar2" parent="RaceTrack" instance=ExtResource( 4 )]
+position = Vector2( 718.077, -211.549 )
+
+[node name="SemaphoreTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Semaphore" type="Control" parent="."]
+margin_left = 0.814514
+margin_top = 119.732
+margin_right = 40.8145
+margin_bottom = 159.732
+
+[node name="light1" type="TextureRect" parent="Semaphore"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 139.945
+margin_top = -373.834
+margin_right = 139.945
+margin_bottom = -373.834
+texture = ExtResource( 5 )
+
+[node name="light2" type="TextureRect" parent="Semaphore"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 282.484
+margin_top = -377.092
+margin_right = 346.484
+margin_bottom = -313.092
+texture = ExtResource( 5 )
+
+[node name="light3" type="TextureRect" parent="Semaphore"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 425.837
+margin_top = -378.721
+margin_right = 489.837
+margin_bottom = -314.721
+texture = ExtResource( 5 )
+
+[node name="light4" type="TextureRect" parent="Semaphore"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 566.746
+margin_top = -377.092
+margin_right = 630.746
+margin_bottom = -313.092
+texture = ExtResource( 5 )
+[connection signal="timeout" from="SemaphoreTimer" to="." method="_on_SemaphoreTimer_timeout"]
