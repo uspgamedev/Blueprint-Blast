@@ -7,8 +7,6 @@ const LIFETIME = 5
 const EXPLOSION_FORCE = 150
 const RADIUS = 60
 
-onready var main = get_parent()
-
 func _ready():
 	$Lifetime.wait_time = LIFETIME
 	$Lifetime.start()
@@ -23,7 +21,7 @@ func _physics_process(delta):
 		explode()
 
 func explode():
-	for car in main.car_refs:
+	for car in Global.car_refs:
 		var vector : Vector2 = car.global_position - global_position
 		var magnitude : float = clamp(inverse_lerp(RADIUS, 0, vector.length()), 0, 1)
 		var impulse : float = lerp(0, EXPLOSION_FORCE, magnitude)

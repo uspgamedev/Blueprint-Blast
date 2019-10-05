@@ -1,28 +1,9 @@
-extends RigidBody2D
+extends BaseCar
 class_name PlayerCar
 
-const BULLET_PATH = "res://bullets/Bullet.tscn"
-
-const MAX_VELOCITY = 200
-const ACCELERATION = 100
-const BULLET_COOLDOWN = .2
-
-onready var main = get_parent()
-onready var wheel_1 : RigidBody2D = $Wheel1
-onready var wheel_2 : RigidBody2D = $Wheel2
-
 func _ready():
-	friction = 0.2
-	$BulletCooldown.wait_time = BULLET_COOLDOWN
-	if main.get("car_refs"):
-		main.car_refs.append(self)
-	if CarMaker.convex_hull:
-		$CollisionShape2D.shape.points = CarMaker.convex_hull
-		add_child(CarMaker.chassis_line.duplicate())
-		for line in CarMaker.chassis_deco:
-			if (line):
-				add_child(line)
-
+	front_wheel = $FrontWheel
+	back_wheel = $BackWheel
 
 func _physics_process(delta):
 	update_movement_with_wheels()
@@ -36,7 +17,7 @@ func handle_shooting():
 			bullet.global_rotation = global_rotation
 			bullet.add_collision_exception_with(self)
 			bullet.global_position = global_position
-			main.add_child(bullet)
+			Global.add_child(bullet)
 			$BulletCooldown.start()
 
 func update_movement():
@@ -49,17 +30,17 @@ func update_movement():
 		angular_velocity += 0.1
 	if Input.is_action_pressed("rotate_counter_clockwise"):
 		angular_velocity -= 0.1
-	applied_force = vector.normalized() * ACCELERATION
-	linear_velocity = linear_velocity.normalized() * min(linear_velocity.length(), MAX_VELOCITY)
+	applied_force = vector.normalized() * acceleration
+	linear_velocity = linear_velocity.normalized() * min(linear_velocity.length(), max_velocity)
 
 func update_movement_with_wheels():
 	var force = 20
 	if Input.is_action_pressed("accelerate"):
-		wheel_1.apply_torque_impulse(force)
-		wheel_2.apply_torque_impulse(force)
+		back_wheel.apply_torque_impulse(force)
+		front_wheel.apply_torque_impulse(force)
 	if Input.is_action_pressed("reverse"):
-		wheel_1.apply_torque_impulse(-force)
-		wheel_2.apply_torque_impulse(-force)
+		back_wheel.apply_torque_impulse(-force)
+		front_wheel.apply_torque_impulse(-force)
 
 	if Input.is_action_pressed("rotate_clockwise"):
 		angular_velocity += 0.1

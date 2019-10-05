@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "BaseCar",
+"language": "GDScript",
+"path": "res://car/BaseCar.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -19,12 +24,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://math/ConvexPolygonArea.gd"
 }, {
-"base": "RigidBody2D",
+"base": "BaseCar",
 "class": "PlayerCar",
 "language": "GDScript",
 "path": "res://car/PlayerCar.gd"
 } ]
 _global_script_class_icons={
+"BaseCar": "",
 "Bullet": "",
 "ConvexPolygonArea": "",
 "PlayerCar": ""
@@ -39,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 CarMaker="*res://CarMaker.tscn"
+Global="*res://Global.gd"
 
 [input]
 
