@@ -1,9 +1,8 @@
 extends BaseCar
 class_name PlayerCar
 
-const TORQUE = 100
+const TORQUE = 800
 var area : float
-var rotation_area : float
 
 func _ready():
 	var main = get_parent()
@@ -24,7 +23,6 @@ func _ready():
 		back_wheel.get_parent().set_wheel_polygon(CarMaker.left_wheel_hull)
 		front_wheel.get_parent().set_wheel_polygon(CarMaker.right_wheel_hull)
 		area = ConvexPolygonArea.get_convex_polygon_area(CarMaker.convex_hull)
-		rotation_area = pow(area, 1.0/3)
 
 func _physics_process(delta):
 	update_movement_with_wheels()
@@ -45,6 +43,8 @@ func update_movement_with_wheels():
 		front_wheel.apply_torque_impulse(-force)
 
 	if Input.is_action_pressed("rotate_clockwise"):
-		apply_torque_impulse(TORQUE * rotation_area)
+		back_wheel.applied_force = Vector2(0, -1) * TORQUE
+		front_wheel.applied_force = Vector2(0, 1) * TORQUE
 	if Input.is_action_pressed("rotate_counter_clockwise"):
-		apply_torque_impulse(-TORQUE * rotation_area)
+		back_wheel.applied_force = Vector2(0, 1) * TORQUE
+		front_wheel.applied_force = Vector2(0, -1) * TORQUE
