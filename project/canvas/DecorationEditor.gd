@@ -22,7 +22,7 @@ func _on_Clear_pressed():
 
 func _on_Accept_pressed():
 	if CarMaker.state == CarMaker.States.CHASSIS_DECO:
-		canvas.drawing_scale = .3
+		canvas.drawing_scale = .5
 		CarMaker.chassis_deco = canvas.get_scaled_lines()
 		for line in CarMaker.chassis_deco:
 			line.position -= canvas.rect_size / 2
