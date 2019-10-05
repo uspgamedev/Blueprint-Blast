@@ -15,7 +15,7 @@ func _physics_process(delta):
 func handle_shooting():
 	if Input.is_action_just_pressed("shoot"):
 		if $BulletCooldown.time_left == 0:
-			
+			pass
 		
 
 func update_movement():
