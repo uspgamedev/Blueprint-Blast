@@ -14,7 +14,8 @@ onready var wheel_2 : RigidBody2D = $Wheel2
 func _ready():
 	friction = 0.2
 	$BulletCooldown.wait_time = BULLET_COOLDOWN
-   main.car_refs.append(self)
+	if main.get("car_refs"):
+		main.car_refs.append(self)
 	if CarMaker.convex_hull:
 		$CollisionShape2D.shape.points = CarMaker.convex_hull
 		add_child(CarMaker.chassis_line.duplicate())
