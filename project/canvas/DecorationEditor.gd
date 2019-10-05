@@ -24,7 +24,7 @@ func _on_Accept_pressed():
 			line.position -= canvas.rect_size / 2
 			
 		CarMaker.state = CarMaker.States.LEFT_WHEEL
-		get_tree().change_scene("res://test/Editor.tscn")
+		get_tree().change_scene("res://canvas/Editor.tscn")
 
 
 func _on_ColorPicker_color_changed(color):

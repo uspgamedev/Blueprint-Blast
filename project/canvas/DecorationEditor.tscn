@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://test/DecorationEditor.gd" type="Script" id=1]
-[ext_resource path="res://test/DecorationCanvas.tscn" type="PackedScene" id=2]
+[ext_resource path="res://canvas/DecorationEditor.gd" type="Script" id=1]
+[ext_resource path="res://canvas/DecorationCanvas.tscn" type="PackedScene" id=2]
+
 
 [node name="DecorationEditor" type="Control"]
 anchor_right = 1.0

@@ -18,14 +18,14 @@ func _on_Accept_pressed():
 		CarMaker.chassis_line.position -= canvas.rect_size / 2
 		
 		CarMaker.state = CarMaker.States.CHASSIS_DECO
-		get_tree().change_scene("res://test/DecorationEditor.tscn")
+		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 	elif CarMaker.state == CarMaker.States.LEFT_WHEEL:
 		CarMaker.left_wheel_hull = canvas.get_convex_hull()
 		CarMaker.left_wheel_line = canvas.get_scaled_line()
 		CarMaker.left_wheel_line.position -= canvas.rect_size / 2
 		
 		CarMaker.state = CarMaker.States.RIGHT_WHEEL
-		get_tree().change_scene("res://test/Editor.tscn")
+		get_tree().change_scene("res://canvas/Editor.tscn")
 	
 	elif CarMaker.state == CarMaker.States.RIGHT_WHEEL:
 		CarMaker.right_wheel_hull = canvas.get_convex_hull()
