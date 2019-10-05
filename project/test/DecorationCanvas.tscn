@@ -6,6 +6,7 @@
 [node name="DecorationCanvas" type="TextureRect"]
 margin_right = 500.0
 margin_bottom = 500.0
+rect_min_size = Vector2( 100, 100 )
 texture = ExtResource( 1 )
 expand = true
 script = ExtResource( 2 )

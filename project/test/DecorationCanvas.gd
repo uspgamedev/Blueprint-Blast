@@ -4,23 +4,27 @@ const POINTS_TIME = .01
 const POINTS_DIST = 1
 
 var lines = []
+var lines_backup = []
 var line_color = Color.black
 var line_width = 10
 var time = 0
+var is_drawing = false
 
 func _input(event):
-	if event.is_action_pressed("canvas_clear"):
-		undo()
-	elif event.is_action_pressed("canvas_click"):
-		new_line()
-		time = 0
-		lines.back().add_point(get_local_mouse_position())
+
+	if event.is_action_pressed("canvas_click"):
+		var point = get_local_mouse_position()
+		if point.x >= 0 and point.x <= rect_size.x and point.y >= 0 and point.y <= rect_size.y:
+			is_drawing = true
+			new_line()
+			time = 0
+			lines.back().add_point(point)
 	elif event.is_action_released("canvas_click"):
-		pass
+		is_drawing = false
 
 
 func _process(delta):
-	if Input.is_action_pressed("canvas_click"):
+	if is_drawing and Input.is_action_pressed("canvas_click"):
 		time += delta
 		while time > POINTS_TIME:
 			time -= POINTS_TIME
@@ -36,9 +40,15 @@ func undo():
 	if lines.size():
 		remove_child(lines.back())
 		lines.pop_back()
+	else:
+		lines = lines_backup
+		for line in lines:
+			add_child(line)
+		lines_backup = []
 
 
 func clear():
+	lines_backup = lines.duplicate()
 	for line in lines:
 		remove_child(line)
 	lines = []
