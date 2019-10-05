@@ -4,8 +4,8 @@ class_name PlayerCar
 func _ready():
 	
 	var main = get_parent()
-	front_wheel = $FrontWheel
-	back_wheel = $BackWheel
+#	front_wheel = $FrontWheel
+#	back_wheel = $BackWheel
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
 	if main.get("car_refs"):

@@ -7,8 +7,8 @@ var force = 40
 var max_velocity = 200
 var acceleration = 100
 var bullet_cooldown = .2
-onready var front_wheel = $FrontWheel
-onready var back_wheel = $BackWheel
+onready var front_wheel = get_node("FrontWheel/SpinningBody")
+onready var back_wheel = get_node("BackWheel/SpinningBody")
 
 func _ready():
 	friction = 0.2

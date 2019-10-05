@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2.93827, 2.75364 )
+
+[node name="BackWheel" type="Node2D"]
+
+[node name="SpinningBody" type="RigidBody2D" parent="."]
+position = Vector2( -8.623, 7 )
+collision_mask = 6
+
+[node name="Polygon2D" type="CollisionPolygon2D" parent="SpinningBody"]
+position = Vector2( -0.17148, -4.07943 )
+scale = Vector2( 2.08946, 2.44153 )
+polygon = PoolVector2Array( -0.412235, -0.65693, 0.88259, -0.698745, 2.03083, -0.447852, 2.98363, 0.283918, 3.30122, 1.26658, 3.27679, 2.47923, 2.6416, 3.37826, 1.66437, 3.83823, 0.222962, 4.21457, -0.803125, 4.15185, -1.92694, 3.60825, -2.70872, 2.56286, -2.90416, 1.47566, -2.68429, 0.555719, -2.04909, -0.0924212, -1.24288, -0.531483 )
+
+[node name="Spring" type="DampedSpringJoint2D" parent="SpinningBody"]
+visible = false
+position = Vector2( -0.124736, -11.5171 )
+node_a = NodePath("../../..")
+node_b = NodePath("../../Dull")
+length = 15.0
+rest_length = 15.0
+stiffness = 10.0
+damping = 0.5
+
+[node name="JointUp" type="GrooveJoint2D" parent="SpinningBody"]
+visible = false
+position = Vector2( -0.242981, -11.7442 )
+node_a = NodePath("../../..")
+node_b = NodePath("../../Dull")
+length = 15.0
+initial_offset = 5.0
+
+[node name="JointDown" type="GrooveJoint2D" parent="SpinningBody"]
+visible = false
+position = Vector2( -0.242981, 3.23979 )
+node_a = NodePath("../../Dull")
+node_b = NodePath("../../..")
+length = 15.0
+initial_offset = 5.0
+
+[node name="Dull" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dull"]
+position = Vector2( -8.56506, 6.9851 )
+shape = SubResource( 1 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Dull"]
+visible = false
+position = Vector2( -8.59661, 6.89618 )
+node_a = NodePath("../../SpinningBody")
+node_b = NodePath("..")

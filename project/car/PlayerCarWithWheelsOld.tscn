@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://car/PlayerCar.gd" type="Script" id=1]
-[ext_resource path="res://car/WheelWithDull.tscn" type="PackedScene" id=2]
+[ext_resource path="res://car/Wheel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 32.33, -21.98, 32.32, 4.78, -25.75, 5, -25.8, -21.67 )
+points = PoolVector2Array( 0, -10, 16.65, 5, -8.39, 5 )
 
 [node name="PlayerCar" type="RigidBody2D"]
 collision_mask = 6
@@ -17,6 +17,7 @@ shape = SubResource( 1 )
 one_shot = true
 
 [node name="BackWheel" parent="." instance=ExtResource( 2 )]
+position = Vector2( -8.623, 7 )
 
 [node name="FrontWheel" parent="." instance=ExtResource( 2 )]
-position = Vector2( 26.3517, 0.397762 )
+position = Vector2( 15.426, 7 )
