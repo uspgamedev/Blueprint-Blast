@@ -1,12 +1,11 @@
 extends BaseCar
 
 func _ready():
-	max_velocity = 150
+	force = 20
 
 func _physics_process(delta):
 	update_movement()
 
 func update_movement():
-	var vector = Vector2(1, 0)
-	applied_force = vector.normalized() * acceleration
-	linear_velocity = linear_velocity.normalized() * min(linear_velocity.length(), max_velocity)
+	back_wheel.apply_torque_impulse(force)
+	front_wheel.apply_torque_impulse(force)
