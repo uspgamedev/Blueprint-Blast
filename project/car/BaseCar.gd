@@ -15,7 +15,7 @@ func _ready():
 	$BulletCooldown.wait_time = bullet_cooldown
 	Global.car_refs.append(self)
 
-func shoot():
+func shoot(bullet_info):
 	if Global.race_state == Global.RACE_STATE.RACE:
 		var bullet = load(BULLET_PATH).instance()
 		bullet.global_rotation = global_rotation
@@ -23,6 +23,12 @@ func shoot():
 		bullet.add_collision_exception_with(front_wheel)
 		bullet.add_collision_exception_with(back_wheel)
 		bullet.global_position = global_position
+		if bullet_info:
+			bullet.add_child(bullet_info["line"].duplicate())
+			for line in bullet_info["deco"]:
+				if (line):
+					bullet.add_child(line.duplicate())
+			bullet.get_node("CollisionPolygon2D").polygon = bullet_info["hull"]
 		Global.add_child(bullet)
 		$BulletCooldown.start()
 

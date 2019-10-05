@@ -18,4 +18,4 @@ func handle_shooting():
 		var vector : Vector2 = car.global_position - global_position
 		if abs(vector.angle_to(Vector2(1, 0).rotated(global_rotation))) < 0.1:
 			if $BulletCooldown.time_left == 0:
-				shoot()
+				shoot(null)

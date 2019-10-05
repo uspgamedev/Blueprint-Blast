@@ -3,6 +3,7 @@ class_name PlayerCar
 
 const TORQUE = 800
 var area : float
+var bullet_info = {}
 
 func _ready():
 	var main = get_parent()
@@ -34,6 +35,11 @@ func _ready():
 			if (line):
 				front_wheel.add_child(line)
 		front_wheel.get_parent().set_wheel_polygon(CarMaker.right_wheel_hull)
+		
+		#Bullet
+		bullet_info["hull"] = CarMaker.projectile_hull
+		bullet_info["line"] = CarMaker.projectile_line
+		bullet_info["deco"] = CarMaker.projectile_deco
 
 		area = ConvexPolygonArea.get_convex_polygon_area(CarMaker.convex_hull)
 
@@ -45,7 +51,7 @@ func _physics_process(delta):
 func handle_shooting():
 	if Input.is_action_just_pressed("shoot"):
 		if $BulletCooldown.time_left == 0:
-			shoot()
+			shoot(bullet_info)
 
 func update_movement_with_wheels():
 	if Input.is_action_pressed("accelerate"):
