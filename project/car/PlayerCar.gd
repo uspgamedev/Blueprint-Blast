@@ -51,7 +51,7 @@ func update_movement_with_wheels():
 	if Input.is_action_pressed("reverse"):
 		wheel_1.apply_torque_impulse(-force)
 		wheel_2.apply_torque_impulse(-force)
-	
+
 	if Input.is_action_pressed("rotate_clockwise"):
 		angular_velocity += 0.1
 	if Input.is_action_pressed("rotate_counter_clockwise"):
