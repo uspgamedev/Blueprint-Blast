@@ -3,7 +3,7 @@ class_name BaseCar
 
 const BULLET_PATH = "res://bullets/Bullet.tscn"
 
-var force = 40
+var force = 400
 var max_velocity = 200
 var acceleration = 100
 var bullet_cooldown = .2

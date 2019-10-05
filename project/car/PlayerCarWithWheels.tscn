@@ -4,7 +4,6 @@
 [ext_resource path="res://car/WheelWithDull.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 32.33, -21.98, 32.32, 4.78, -25.75, 5, -25.8, -21.67 )
 
 [node name="PlayerCar" type="RigidBody2D"]
 collision_mask = 6
@@ -17,6 +16,7 @@ shape = SubResource( 1 )
 one_shot = true
 
 [node name="BackWheel" parent="." instance=ExtResource( 2 )]
+position = Vector2( -50, 30 )
 
 [node name="FrontWheel" parent="." instance=ExtResource( 2 )]
-position = Vector2( 26.3517, 0.397762 )
+position = Vector2( 50, 30 )

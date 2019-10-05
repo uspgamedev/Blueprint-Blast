@@ -4,7 +4,7 @@ extends StaticBody2D
 var points = PoolVector2Array()
 
 func _ready():
-	for x in range(0, 30000, 30):
+	for x in range(0, 100000, 100):
 		var point = Vector2(x, 50*cos(x*PI/500))
 		points.append(point)
 	points.append(Vector2(points[points.size()-1].x, 100))

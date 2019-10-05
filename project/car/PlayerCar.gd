@@ -4,8 +4,8 @@ class_name PlayerCar
 func _ready():
 	
 	var main = get_parent()
-#	front_wheel = $FrontWheel
-#	back_wheel = $BackWheel
+	front_wheel = $FrontWheel/SpinningBody
+	back_wheel = $BackWheel/SpinningBody
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
 	if main.get("car_refs"):
@@ -16,8 +16,10 @@ func _ready():
 		for line in CarMaker.chassis_deco:
 			if (line):
 				add_child(line)
-#		back_wheel.set_wheel_polygon(CarMaker.left_wheel_line.points)
-#		front_wheel.set_wheel_polygon(CarMaker.right_wheel_line.points)
+		back_wheel.add_child(CarMaker.left_wheel_line)
+		front_wheel.add_child(CarMaker.right_wheel_line)
+		back_wheel.get_parent().set_wheel_polygon(CarMaker.left_wheel_hull)
+		front_wheel.get_parent().set_wheel_polygon(CarMaker.right_wheel_hull)
 
 func _physics_process(delta):
 	update_movement_with_wheels()

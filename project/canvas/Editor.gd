@@ -11,7 +11,7 @@ func _on_Clear_pressed():
 
 func _on_Accept_pressed():
 	if CarMaker.state == CarMaker.States.CHASSIS:
-		canvas.drawing_scale = .3
+		canvas.drawing_scale = .5
 		CarMaker.convex_hull = canvas.get_convex_hull()
 		CarMaker.outline = canvas.get_line()
 		CarMaker.chassis_line = canvas.get_scaled_line()
@@ -20,7 +20,7 @@ func _on_Accept_pressed():
 		CarMaker.state = CarMaker.States.CHASSIS_DECO
 		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 	elif CarMaker.state == CarMaker.States.LEFT_WHEEL:
-		canvas.drawing_scale = .1
+		canvas.drawing_scale = .3
 		CarMaker.left_wheel_hull = canvas.get_convex_hull()
 		CarMaker.left_wheel_line = canvas.get_scaled_line()
 		CarMaker.left_wheel_line.position -= canvas.rect_size / 2
@@ -29,7 +29,7 @@ func _on_Accept_pressed():
 		get_tree().change_scene("res://canvas/Editor.tscn")
 	
 	elif CarMaker.state == CarMaker.States.RIGHT_WHEEL:
-		canvas.drawing_scale = .1
+		canvas.drawing_scale = .3
 		CarMaker.right_wheel_hull = canvas.get_convex_hull()
 		CarMaker.right_wheel_line = canvas.get_scaled_line()
 		CarMaker.right_wheel_line.position -= canvas.rect_size / 2
