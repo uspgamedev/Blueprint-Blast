@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://car/PlayerCar.gd" type="Script" id=1]
+
+[node name="PlayerCar" type="RigidBody2D"]
+collision_mask = 6
+script = ExtResource( 1 )
+
+[node name="PinJoint2DWheel1" type="PinJoint2D" parent="."]
+position = Vector2( -7.52831, 2.50944 )
+node_a = NodePath("..")
+node_b = NodePath("../Wheel1")
+
+[node name="PinJoint2DWheel2" type="PinJoint2D" parent="."]
+position = Vector2( 12.52, 2.81423 )
+node_a = NodePath("..")
+node_b = NodePath("../Wheel2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -17.7869, 2.62042, -17.0544, -2.99556, -11.1942, -4.09434, -8.01998, -10.0766, 4.9212, -10.0766, 12.8568, -4.09434, 20.9145, -3.72808, 26.4084, -1.40844, 26.6526, 3.10876, 14.6881, 3.10876, 12.2339, 3.49223, 9.66976, 3.31796, 7.48502, 3.10876, -3.13652, 3.10876, -5.11745, 3.41754, -6.90983, 3.1686, -10.2175, 3.23085 )
+
+[node name="BulletCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Wheel1" type="RigidBody2D" parent="."]
+position = Vector2( -8.5399, 2.74755 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="Polygon2D" type="CollisionPolygon2D" parent="Wheel1"]
+position = Vector2( -0.732994, -3.62001 )
+scale = Vector2( 2.08946, 2.44153 )
+polygon = PoolVector2Array( -2.49677, 0.724261, -0.540138, -1.00707, 2.68622, -1.2748, 3.7478, 0.974143, 3.35231, 3.11599, -0.769105, 4.20476, -2.60084, 2.52698 )
+
+[node name="Wheel2" type="RigidBody2D" parent="."]
+position = Vector2( 11.7501, 3.18647 )
+
+[node name="Polygon2D" type="CollisionPolygon2D" parent="Wheel2"]
+position = Vector2( -0.736268, -3.64182 )
+scale = Vector2( 2.03612, 2.23681 )
+polygon = PoolVector2Array( -2.49677, 0.724261, -0.540138, -1.00707, 2.68622, -1.2748, 3.7478, 0.974143, 3.35231, 3.11599, -0.769105, 4.20476, -2.60084, 2.52698 )
