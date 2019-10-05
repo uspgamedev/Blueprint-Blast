@@ -42,9 +42,10 @@ func update_movement_with_wheels():
 		back_wheel.apply_torque_impulse(-force)
 		front_wheel.apply_torque_impulse(-force)
 
+	var force = Vector2(0, 0)
 	if Input.is_action_pressed("rotate_clockwise"):
-		back_wheel.applied_force = Vector2(0, -1) * TORQUE
-		front_wheel.applied_force = Vector2(0, 1) * TORQUE
+		force += Vector2(0, 1)
 	if Input.is_action_pressed("rotate_counter_clockwise"):
-		back_wheel.applied_force = Vector2(0, 1) * TORQUE
-		front_wheel.applied_force = Vector2(0, -1) * TORQUE
+		force += Vector2(0, -1)
+	back_wheel.applied_force = -force * TORQUE
+	front_wheel.applied_force = force * TORQUE

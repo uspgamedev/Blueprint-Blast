@@ -16,7 +16,7 @@ shape = SubResource( 1 )
 one_shot = true
 
 [node name="BackWheel" parent="." instance=ExtResource( 2 )]
-position = Vector2( -50, 30 )
+position = Vector2( -66, 40 )
 
 [node name="FrontWheel" parent="." instance=ExtResource( 2 )]
-position = Vector2( 50, 30 )
+position = Vector2( 78, 40 )

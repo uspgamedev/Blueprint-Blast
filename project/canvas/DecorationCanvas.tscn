@@ -12,3 +12,10 @@ expand = true
 script = ExtResource( 2 )
 
 [node name="Line2D" type="Line2D" parent="."]
+texture_mode = -1272333152
+
+[node name="Outline" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5

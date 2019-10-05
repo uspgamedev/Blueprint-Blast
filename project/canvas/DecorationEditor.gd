@@ -1,9 +1,13 @@
 extends Control
 
 onready var canvas = $VBoxContainer/HBoxContainer2/DecorationCanvas
+var scale = 0.2
 
 func _ready():
 	$Label.text = CarMaker.STATES_NAME[CarMaker.state]
+	canvas.get_node("Outline").texture = load(CarMaker.STATES_IMAGES[CarMaker.state])
+	canvas.get_node("Outline").rect_position -= canvas.get_node("Outline").texture.get_size() * scale /2
+	canvas.get_node("Outline").rect_scale *= scale
 	if CarMaker.outline:
 		canvas.add_child(CarMaker.outline)
 

@@ -3,6 +3,7 @@ extends Node
 enum States {CHASSIS, CHASSIS_DECO, LEFT_WHEEL, RIGHT_WHEEL, PROJECTILE, DONE}
 
 const STATES_NAME = ["Chassis", "Chassis Decoration", "Left Wheel", "Right Wheel", "Projectile", "Done"]
+const STATES_IMAGES = ["res://assets/carro.png", "res://assets/carro.png", "res://assets/roda.png", "res://assets/roda.png", "res://assets/roda.png"]
 
 var convex_hull : PoolVector2Array
 var left_wheel_hull : PoolVector2Array
