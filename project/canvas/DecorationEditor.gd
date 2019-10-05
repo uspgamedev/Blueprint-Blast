@@ -29,6 +29,26 @@ func _on_Accept_pressed():
 			
 		CarMaker.state = CarMaker.States.LEFT_WHEEL
 		get_tree().change_scene("res://canvas/Editor.tscn")
+		
+	elif CarMaker.state == CarMaker.States.LEFT_WHEEL_DECO:
+		canvas.drawing_scale = .3
+		CarMaker.left_wheel_deco = canvas.get_scaled_lines()
+		for line in CarMaker.left_wheel_deco:
+			line.position -= canvas.rect_size / 2
+		
+		CarMaker.state = CarMaker.States.RIGHT_WHEEL
+		get_tree().change_scene("res://canvas/Editor.tscn")
+	
+	elif CarMaker.state == CarMaker.States.RIGHT_WHEEL_DECO:
+		canvas.drawing_scale = .3
+		CarMaker.right_wheel_deco = canvas.get_scaled_lines()
+		for line in CarMaker.right_wheel_deco:
+			line.position -= canvas.rect_size / 2
+		
+		CarMaker.outline = null
+		CarMaker.state = CarMaker.States.CANNON
+		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		
 	elif CarMaker.state == CarMaker.States.CANNON:
 		canvas.drawing_scale = .3
 		CarMaker.cannon = canvas.get_scaled_lines()

@@ -13,15 +13,28 @@ func _ready():
 	if main.get("car_refs"):
 		main.car_refs.append(self)
 	if CarMaker.state == CarMaker.States.DONE:
+
+		#Chassis
 		$CollisionShape2D.shape.points = CarMaker.convex_hull
 		add_child(CarMaker.chassis_line)
 		for line in CarMaker.chassis_deco:
 			if (line):
 				add_child(line)
+
+		#Backwheel
 		back_wheel.add_child(CarMaker.left_wheel_line)
-		front_wheel.add_child(CarMaker.right_wheel_line)
+		for line in CarMaker.left_wheel_deco:
+			if (line):
+				back_wheel.add_child(line)
 		back_wheel.get_parent().set_wheel_polygon(CarMaker.left_wheel_hull)
+
+		#Frontwheel
+		front_wheel.add_child(CarMaker.right_wheel_line)
+		for line in CarMaker.right_wheel_deco:
+			if (line):
+				front_wheel.add_child(line)
 		front_wheel.get_parent().set_wheel_polygon(CarMaker.right_wheel_hull)
+
 		area = ConvexPolygonArea.get_convex_polygon_area(CarMaker.convex_hull)
 
 func _physics_process(delta):
