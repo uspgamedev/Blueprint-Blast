@@ -5,24 +5,28 @@ onready var line = $Line2D
 const POINTS_TIME = .01
 const POINTS_DIST = 1
 
+var is_drawing = false
 var can_draw = true
 var time = 0
 
 func _input(event):
 	if event.is_action_pressed("canvas_clear"):
 		clear()
-	elif event.is_action_pressed("canvas_click"):
-		if can_draw:
+	elif event.is_action_pressed("canvas_click") and can_draw:
+		var point = get_local_mouse_position()
+		if point.x >= 0 and point.x <= rect_size.x and point.y >= 0 and point.y <= rect_size.y:
+			is_drawing = true
 			time = 0
-			line.add_point(get_local_mouse_position())
+			line.add_point(point)
 	elif event.is_action_released("canvas_click"):
-		if can_draw:
+		if is_drawing:
 			can_draw = false
 			line.add_point(line.get_point_position(0))
+		is_drawing = false
 
 
 func _process(delta):
-	if can_draw and Input.is_action_pressed("canvas_click"):
+	if is_drawing and Input.is_action_pressed("canvas_click"):
 		time += delta
 		while time > POINTS_TIME:
 			time -= POINTS_TIME
