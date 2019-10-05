@@ -5,13 +5,14 @@ const BULLET_PATH = "res://bullets/Bullet.tscn"
 
 const MAX_VELOCITY = 200
 const ACCELERATION = 100
-const BULLET_COOLDOWN = .5
+const BULLET_COOLDOWN = .2
 
 onready var main = get_parent()
 
 func _ready():
 	friction = 0.2
 	$BulletCooldown.wait_time = BULLET_COOLDOWN
+	main.car_refs.append(self)
 
 func _physics_process(delta):
 	update_movement()
