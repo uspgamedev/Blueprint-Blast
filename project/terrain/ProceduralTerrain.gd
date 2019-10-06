@@ -12,10 +12,13 @@ func _ready():
 #		points.append(point)
 #	points.append(Vector2(points[points.size()-1].x, 100))
 #	points.append(Vector2(0, 100))
-
+	
+	points.append(Vector2(0, 0))
+	points.append(Vector2(950, 0))
+	
 	var vector = Vector2(1, 0)
 	var bias = 0
-	for x in range(0, 20000, 50):
+	for x in range(1000, 20000, 50):
 		if x % 400 == 0:
 			bias = (PI/4 + PI/8 * randf()) * (1 - 2 * randi() % 2)
 		var rand = gaussian(bias, PI/30)
@@ -24,13 +27,14 @@ func _ready():
 		points.append(Vector2(x, vector.y))
 		vector = Vector2(1, 0)
 	
-	for i in range(2, points.size() - 2):
+	for i in range(4, points.size() - 2):
 		points[i] = (points[i-2] + points[i-1] + points[i] + points[i+1] + points[i+2])/5
 	
 	points.append(Vector2(points[points.size()-1].x, 500))
 	points.append(Vector2(0, 500))
 	
 	$CollisionPolygon2D.polygon = points
+	$Polygon2D.polygon = points
 
 func gaussian(mean, deviation):
 	var x1
