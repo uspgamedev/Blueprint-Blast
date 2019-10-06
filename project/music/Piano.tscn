@@ -1,13 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://music/Piano.gd" type="Script" id=1]
 [ext_resource path="res://music/Button.gd" type="Script" id=2]
-[ext_resource path="res://assets/Piano.png" type="Texture" id=3]
-[ext_resource path="res://music/RecordButton.gd" type="Script" id=4]
-[ext_resource path="res://music/FinishButton.gd" type="Script" id=5]
-[ext_resource path="res://music/MusicMaker.tscn" type="PackedScene" id=6]
-[ext_resource path="res://music/HSlider.gd" type="Script" id=7]
-[ext_resource path="res://assets/metronome.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/A.png" type="Texture" id=3]
+[ext_resource path="res://assets/B.png" type="Texture" id=4]
+[ext_resource path="res://assets/C.png" type="Texture" id=5]
+[ext_resource path="res://assets/D.png" type="Texture" id=6]
+[ext_resource path="res://assets/E.png" type="Texture" id=7]
+[ext_resource path="res://assets/F.png" type="Texture" id=8]
+[ext_resource path="res://assets/G.png" type="Texture" id=9]
+[ext_resource path="res://music/RecordButton.gd" type="Script" id=10]
+[ext_resource path="res://music/FinishButton.gd" type="Script" id=11]
+[ext_resource path="res://music/MusicMaker.tscn" type="PackedScene" id=12]
+[ext_resource path="res://music/HSlider.gd" type="Script" id=13]
+[ext_resource path="res://assets/metronome.ogg" type="AudioStream" id=14]
 
 [node name="Piano" type="Control"]
 anchor_right = 1.0
@@ -26,7 +32,6 @@ margin_bottom = 226.5
 custom_constants/separation = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-editor/display_folded = true
 margin_right = 444.0
 margin_bottom = 120.0
 
@@ -36,6 +41,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "A"
 script = ExtResource( 2 )
+piano_image = ExtResource( 3 )
 
 [node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 64.0
@@ -44,6 +50,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "B"
 script = ExtResource( 2 )
+piano_image = ExtResource( 4 )
 
 [node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 128.0
@@ -52,6 +59,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "C"
 script = ExtResource( 2 )
+piano_image = ExtResource( 5 )
 
 [node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 192.0
@@ -60,6 +68,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "D"
 script = ExtResource( 2 )
+piano_image = ExtResource( 6 )
 
 [node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 256.0
@@ -68,6 +77,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "E"
 script = ExtResource( 2 )
+piano_image = ExtResource( 7 )
 
 [node name="Button6" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 320.0
@@ -76,6 +86,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "F"
 script = ExtResource( 2 )
+piano_image = ExtResource( 8 )
 
 [node name="Button7" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 384.0
@@ -84,88 +95,16 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
 text = "G"
 script = ExtResource( 2 )
+piano_image = ExtResource( 9 )
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-editor/display_folded = true
 margin_top = 220.0
 margin_right = 444.0
-margin_bottom = 453.0
+margin_bottom = 426.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource( 3 )
 stretch_mode = 4
-
-[node name="Label" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 76.1187
-margin_top = 158.522
-margin_right = 84.1187
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "1"
-
-[node name="Label2" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 113.934
-margin_top = 158.522
-margin_right = 121.934
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "2"
-
-[node name="Label3" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 151.748
-margin_top = 158.522
-margin_right = 159.748
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "3"
-
-[node name="Label4" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 190.227
-margin_top = 158.522
-margin_right = 198.227
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "4"
-
-[node name="Label5" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 228.042
-margin_top = 158.522
-margin_right = 236.042
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "5"
-
-[node name="Label6" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 265.857
-margin_top = 158.522
-margin_right = 273.857
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "6"
-
-[node name="Label7" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 303.672
-margin_top = 158.522
-margin_right = 311.672
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "7"
-
-[node name="Label8" type="Label" parent="VBoxContainer/TextureRect"]
-margin_left = 340.823
-margin_top = 158.522
-margin_right = 348.823
-margin_bottom = 172.522
-rect_scale = Vector2( 3, 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "8"
 
 [node name="RecordButton" type="Button" parent="."]
 margin_left = 91.504
@@ -173,7 +112,7 @@ margin_top = 367.649
 margin_right = 244.504
 margin_bottom = 443.649
 text = "Record Base Track"
-script = ExtResource( 4 )
+script = ExtResource( 10 )
 
 [node name="FinishButton" type="Button" parent="."]
 margin_left = 747.203
@@ -181,12 +120,12 @@ margin_top = 367.649
 margin_right = 900.203
 margin_bottom = 443.649
 text = "Finish Base Track"
-script = ExtResource( 5 )
+script = ExtResource( 11 )
 
-[node name="BaseMusicMaker" parent="." instance=ExtResource( 6 )]
+[node name="BaseMusicMaker" parent="." instance=ExtResource( 12 )]
 is_base = true
 
-[node name="MelodyMusicMaker" parent="." instance=ExtResource( 6 )]
+[node name="MelodyMusicMaker" parent="." instance=ExtResource( 12 )]
 
 [node name="HSlider" type="HSlider" parent="."]
 margin_left = 791.737
@@ -196,7 +135,7 @@ margin_bottom = 144.866
 min_value = 60.0
 max_value = 180.0
 value = 60.0
-script = ExtResource( 7 )
+script = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="HSlider"]
 anchor_left = 0.5
@@ -207,10 +146,11 @@ margin_left = -26.5
 margin_top = -31.5482
 margin_right = 26.5
 margin_bottom = -17.5482
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BPM: 60"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HSlider"]
-stream = ExtResource( 8 )
+stream = ExtResource( 14 )
 
 [node name="Button" type="Button" parent="HSlider"]
 anchor_left = 0.5
