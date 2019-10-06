@@ -1,20 +1,31 @@
 extends RigidBody2D
 class_name BaseCar
 
-const BULLET_PATH = "res://bullets/Bullet.tscn"
+const BULLET_PATH := "res://bullets/Bullet.tscn"
 
+<<<<<<< Updated upstream
 var force = 300
 var max_velocity = 200
 var acceleration = 100
 var bullet_cooldown = .5
 onready var front_wheel = get_node("FrontWheel/SpinningBody")
 onready var back_wheel = get_node("BackWheel/SpinningBody")
+=======
+var hp := 100
+var force := 40
+var max_velocity := 200
+var acceleration := 100
+var bullet_cooldown := .2
+onready var front_wheel = $FrontWheel
+onready var back_wheel = $BackWheel
+>>>>>>> Stashed changes
 
 func _ready():
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
 	Global.car_refs.append(self)
 
+<<<<<<< Updated upstream
 func shoot(bullet_info, pos):
 	if Global.race_state == Global.RACE_STATE.RACE:
 		var bullet = load(BULLET_PATH).instance()
@@ -45,3 +56,26 @@ func go_backward():
 		back_wheel.apply_torque_impulse(-force)
 		front_wheel.apply_torque_impulse(-force)
 	
+=======
+func shoot():
+	var bullet = load(BULLET_PATH).instance()
+	bullet.global_rotation = global_rotation
+	bullet.add_collision_exception_with(self)
+	bullet.add_collision_exception_with(front_wheel)
+	bullet.add_collision_exception_with(back_wheel)
+	bullet.global_position = global_position
+	Global.add_child(bullet)
+	$BulletCooldown.start()
+
+func die():
+	global_rotation = 0
+	global_position.y -= 30
+	linear_velocity = Vector2(0, 0)
+	applied_force = Vector2(0, 0)
+	hp = 100
+
+func apply_damage(damage : float):
+	hp -= damage
+	if hp <= 0:
+		die()
+>>>>>>> Stashed changes

@@ -1,8 +1,13 @@
 extends RigidBody2D
 class_name Bullet
 
+<<<<<<< Updated upstream
 const VELOCITY = 500
 const DAMAGE = 20
+=======
+const VELOCITY = 300
+const DAMAGE = 30
+>>>>>>> Stashed changes
 const LIFETIME = 5
 const EXPLOSION_FORCE = 150
 const RADIUS = 60
@@ -26,8 +31,9 @@ func explode():
 		car.apply_impulse(Vector2(0, 0), vector.normalized() * impulse)
 		randomize()
 		car.angular_velocity += vector.normalized().x * impulse/20
+		var damage = inverse_lerp(0, EXPLOSION_FORCE, impulse) * DAMAGE
+		car.apply_damage(damage)
 	obliterate()
-
 
 func _on_Bullet_body_entered(body):
 	if body != shooter:
