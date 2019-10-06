@@ -1,7 +1,7 @@
 extends BaseCar
 class_name PlayerCar
 
-const TORQUE = 800
+const ROTATION_FORCE = 400
 var area : float
 var bullet_info = {}
 
@@ -67,8 +67,8 @@ func update_movement_with_wheels():
 
 	var force = Vector2(0, 0)
 	if Input.is_action_pressed("rotate_clockwise"):
-		force += Vector2(0, 1)
+		force += Vector2(0, 1).rotated(global_rotation)
 	if Input.is_action_pressed("rotate_counter_clockwise"):
-		force += Vector2(0, -1)
-	back_wheel.applied_force = -force * TORQUE
-	front_wheel.applied_force = force * TORQUE
+		force += Vector2(0, -1).rotated(global_rotation)
+	back_wheel.applied_force = -force * ROTATION_FORCE
+	front_wheel.applied_force = force * ROTATION_FORCE

@@ -1,10 +1,10 @@
 extends BaseCar
 class_name AICar
 
-export var ai_force = 120
+export var ai_acceleration = 150
 
 func _ready():
-	force = ai_force
+	acceleration = ai_acceleration
 
 func _physics_process(delta):
 	update_movement()

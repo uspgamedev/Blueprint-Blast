@@ -3,9 +3,7 @@ class_name BaseCar
 
 const BULLET_PATH = "res://bullets/Bullet.tscn"
 
-var force = 300
-var max_velocity = 200
-var acceleration = 100
+var acceleration = 300
 var bullet_cooldown = .5
 onready var front_wheel = get_node("FrontWheel/SpinningBody")
 onready var back_wheel = get_node("BackWheel/SpinningBody")
@@ -37,11 +35,11 @@ func shoot(bullet_info, pos):
 
 func go_forward():
 	if Global.race_state == Global.RACE_STATE.RACE:
-		back_wheel.apply_torque_impulse(force)
-		front_wheel.apply_torque_impulse(force)
+		back_wheel.apply_torque_impulse(acceleration)
+		front_wheel.apply_torque_impulse(acceleration)
 	
 func go_backward():
 	if Global.race_state == Global.RACE_STATE.RACE:
-		back_wheel.apply_torque_impulse(-force)
-		front_wheel.apply_torque_impulse(-force)
+		back_wheel.apply_torque_impulse(-acceleration)
+		front_wheel.apply_torque_impulse(-acceleration)
 	
