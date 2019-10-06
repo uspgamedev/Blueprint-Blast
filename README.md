@@ -34,8 +34,6 @@ The player drives the car by accelerating and braking, turn the inclination, and
 3. Race
 4. Race results
 
-TODO map selection?
-
 ## Draw parts
 
 1. Chassis
