@@ -15,3 +15,9 @@ func switch_current_track():
 	base_node_track.is_active = false
 	melody_node_track.is_active = true
 	current_track = melody_node_track
+
+func get_other_track(track):
+	if track == base_node_track:
+		return melody_node_track
+	else:
+		return base_node_track

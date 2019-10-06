@@ -18,5 +18,11 @@ func button_press():
 		is_recording = false
 		text = str("Start recording ", track_name, " track")
 		current_track.stop_recording()
+		if not current_track.is_base:
+			var other_track = get_parent().get_other_track(current_track)
+			other_track.elapsed_time = 0.0
+			for key in other_track.get_children():
+				key.last_note = 0
+				key.get_node("AudioStreamPlayer").stop()
 		get_node("../FinishButton").show()
 
