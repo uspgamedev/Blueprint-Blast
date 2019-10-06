@@ -52,7 +52,8 @@ func _ready():
 
 		area = ConvexPolygonArea.get_convex_polygon_area(Global.car_maker.convex_hull)
 		
-		hp = area * AREA_TO_HP
+		max_hp = area * AREA_TO_HP
+		hp = max_hp
 		acceleration *= lerp(MAX_ACC_FACTOR, MIN_ACC_FACTOR, area / MAX_CHASSIS_AREA)
 
 

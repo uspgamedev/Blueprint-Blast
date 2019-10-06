@@ -6,6 +6,7 @@ const INVINCIBILITY_TIME := 3
 const RESET_OFFSET := 200
 
 var hp := 100
+var max_hp := 100
 var acceleration := 300
 var bullet_cooldown := 1
 var invincible := false
@@ -59,7 +60,7 @@ func die():
 		element.applied_force = Vector2(0, 0)
 		element.applied_torque = 0
 	apply_invincibility()
-	hp = 100
+	hp = max_hp
 
 
 func apply_invincibility():
