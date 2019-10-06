@@ -1,14 +1,15 @@
 [gd_scene load_steps=2 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 265.026 )
+extents = Vector2( 10, 400 )
 
 [node name="GoalArea2D" type="Area2D"]
-position = Vector2( 1066.75, -181.402 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+position = Vector2( 0, -190 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 13.2472, -48.5979 )
-polygon = PoolVector2Array( -20, 240, -18.0902, -283.978, 181.362, -217.193, 175.947, 301.743, 155.189, 294.523, 165.117, -81.8186, 1.76477, -161.238, -4.55273, 252.106 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -22.4706, 240.983, -22.5568, -283.361, 181.362, -217.193, 180.831, 307.583, 163.624, 296.829, 163.927, -96.3968, -2.81909, -162.085, -4.07336, 253.526 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
