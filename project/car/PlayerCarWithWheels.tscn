@@ -10,6 +10,7 @@ extents = Vector2( 104.961, 71.6538 )
 
 [node name="PlayerCar" type="RigidBody2D"]
 collision_mask = 6
+continuous_cd = 1
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

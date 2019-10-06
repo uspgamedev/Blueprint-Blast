@@ -149,7 +149,7 @@ key_8={
 
 [physics]
 
-2d/default_gravity=300
+2d/default_gravity=250
 
 [rendering]
 

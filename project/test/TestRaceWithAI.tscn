@@ -24,10 +24,12 @@ current = true
 
 [node name="AICar" parent="RaceTrack" instance=ExtResource( 4 )]
 position = Vector2( 457.353, -202.261 )
+continuous_cd = 0
 ai_force = 150
 
 [node name="AICar2" parent="RaceTrack" instance=ExtResource( 4 )]
 position = Vector2( 718.077, -211.549 )
+continuous_cd = 0
 
 [node name="GoalArea2D" parent="RaceTrack" instance=ExtResource( 5 )]
 

@@ -6,6 +6,8 @@ var race_state = RACE_STATE.START
 var car_refs := []
 var winners := []
 var winner_list_gui
+var terrain_difficulty := 1 # 1-10
+
 onready var car_maker : CarMaker = CarMaker.new()
 
 func add_winner(car):

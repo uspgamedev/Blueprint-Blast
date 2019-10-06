@@ -12,6 +12,7 @@ func _ready():
 #		points.append(point)
 #	points.append(Vector2(points[points.size()-1].x, 100))
 #	points.append(Vector2(0, 100))
+	randomize()
 	
 	points.append(Vector2(0, 0))
 	points.append(Vector2(950, 0))
@@ -19,16 +20,17 @@ func _ready():
 	var vector = Vector2(1, 0)
 	var bias = 0
 	for x in range(1000, 20000, 50):
-		if x % 400 == 0:
-			bias = (PI/4 + PI/8 * randf()) * (1 - 2 * randi() % 2)
-		var rand = gaussian(bias, PI/30)
+		if x % 1000 == 0:
+			bias = (PI/8 + PI/12 * randf()) * (1 - 2 * (randi() % 2))
+			print("bias: ", bias)
+		var rand = gaussian(bias, PI/(float(130-10*Global.terrain_difficulty) / 3)) # Formula for (1,40)(10,10)
 		vector = vector.rotated(rand)
 		vector *= 100.0/vector.x
 		points.append(Vector2(x, vector.y))
 		vector = Vector2(1, 0)
 	
-	for i in range(4, points.size() - 2):
-		points[i] = (points[i-2] + points[i-1] + points[i] + points[i+1] + points[i+2])/5
+	for i in range(2, points.size() - 2):
+		points[i].y = (points[i-2].y + points[i-1].y + points[i].y + points[i+1].y + points[i+2].y)/5
 	
 	points.append(Vector2(points[points.size()-1].x, 500))
 	points.append(Vector2(0, 500))
@@ -43,7 +45,6 @@ func gaussian(mean, deviation):
 	if deviation == 0:
 		return mean
 	while true:
-		randomize()
 		x1 = rand_range(0, 2) - 1
 		x2 = rand_range(0, 2) - 1
 		w = x1*x1 + x2*x2
