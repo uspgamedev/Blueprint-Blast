@@ -11,7 +11,7 @@ contact_monitor = true
 script = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -6.77529, -2.21089, 5.12572, -2.23788, 8.27256, 0.209671, 5.21274, 2.17498, -6.84839, 2.17498 )
+polygon = PoolVector2Array( -30.7048, -10.9404, 22.3547, -10.6168, 34.649, -0.263763, 21.0606, 11.0599, -30.3812, 11.0599 )
 
 [node name="Lifetime" type="Timer" parent="."]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

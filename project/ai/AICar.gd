@@ -1,7 +1,7 @@
 extends BaseCar
 class_name AICar
 
-export var ai_acceleration = 150
+export var ai_acceleration = 250
 
 func _ready():
 	acceleration = ai_acceleration

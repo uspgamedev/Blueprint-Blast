@@ -1,13 +1,14 @@
 extends RigidBody2D
 class_name BaseCar
 
-const BULLET_PATH = "res://bullets/Bullet.tscn"
-const INVINCIBILITY_TIME = 3
-const RESET_OFFSET = 200
+const BULLET_PATH := "res://bullets/Bullet.tscn"
+const INVINCIBILITY_TIME := 3
+const RESET_OFFSET := 200
 
-var acceleration = 300
-var bullet_cooldown = .5
-var invincible = false
+var hp := 100
+var acceleration := 300
+var bullet_cooldown := 1
+var invincible := false
 onready var front_wheel = get_node("FrontWheel/SpinningBody")
 onready var back_wheel = get_node("BackWheel/SpinningBody")
 
@@ -83,3 +84,8 @@ func apply_invincibility():
 
 	tween.queue_free()
 	invincible = false
+
+func apply_damage(damage : float):
+	hp -= damage
+	if hp <= 0:
+		die()
