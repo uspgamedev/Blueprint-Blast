@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://music/Piano.gd" type="Script" id=1]
 [ext_resource path="res://music/Button.gd" type="Script" id=2]
 [ext_resource path="res://assets/Piano.png" type="Texture" id=3]
-[ext_resource path="res://music/MusicMaker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://music/RecordButton.gd" type="Script" id=4]
+[ext_resource path="res://music/MusicMaker.tscn" type="PackedScene" id=5]
 
 [node name="Piano" type="Control"]
 anchor_right = 1.0
@@ -162,4 +163,22 @@ rect_scale = Vector2( 3, 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "8"
 
-[node name="MusicMaker" parent="." instance=ExtResource( 4 )]
+[node name="RecordButton" type="Button" parent="."]
+margin_left = 91.504
+margin_top = 367.649
+margin_right = 244.504
+margin_bottom = 443.649
+text = "Record Base Track"
+script = ExtResource( 4 )
+
+[node name="FinishButton" type="Button" parent="."]
+visible = false
+margin_left = 747.203
+margin_top = 367.649
+margin_right = 900.203
+margin_bottom = 443.649
+text = "Finish Base Track"
+
+[node name="BaseMusicMaker" parent="." instance=ExtResource( 5 )]
+
+[node name="MelodyMusicMaker" parent="." instance=ExtResource( 5 )]
