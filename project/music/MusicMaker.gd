@@ -37,12 +37,11 @@ func stop_recording():
 	for key in get_children():
 		key.last_note = 0
 	if play_sequence.size() > 0:
-		elapsed_time = play_sequence[0].y
-		song_duration = play_sequence[-1].z
+		song_duration = elapsed_time
 	else:
-		elapsed_time = 0
 		song_duration = 0
-
+	elapsed_time = 0
+	
 func start_recording():
 	if is_recording:
 		return
@@ -81,15 +80,12 @@ func play_custom_song(delta):
 	elapsed_time += delta
 	var cur_volume = 0
 	for volume in volume_sequence:
-		if volume.x < elapsed_time:
+		if volume.x <= elapsed_time:
 			cur_volume = volume.y
 	for key in get_children():
 		key.handle_track(elapsed_time, play_sequence, VOLUMES[cur_volume-1])
-	if elapsed_time > song_duration:
-		if play_sequence.size() > 0:
-			elapsed_time = play_sequence[0].y
-		else:
-			elapsed_time = 0
+	if elapsed_time >= song_duration:
+		elapsed_time = 0
 		for key in get_children():
 			key.last_note = 0
 		
