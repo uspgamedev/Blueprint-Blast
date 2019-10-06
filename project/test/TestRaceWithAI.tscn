@@ -82,4 +82,5 @@ margin_bottom = 154.119
 rect_scale = Vector2( 3, 3 )
 text = "GAME #5"
 script = ExtResource( 7 )
+[connection signal="area_entered" from="RaceTrack/GoalArea2D" to="." method="_on_GoalArea2D_area_entered"]
 [connection signal="timeout" from="SemaphoreTimer" to="." method="_on_SemaphoreTimer_timeout"]
