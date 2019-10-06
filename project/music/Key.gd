@@ -6,7 +6,8 @@ var last_note := 0
 func _ready():
 	id = int(name.substr(3, 1)) - 1
 
-func handle_track(elapsed_time : float, play_sequence : PoolVector3Array):
+func handle_track(elapsed_time : float, play_sequence : PoolVector3Array, volume : float):
+	$AudioStreamPlayer.volume_db = volume
 	for i in range(last_note, play_sequence.size()):
 		var note = play_sequence[i]
 		if note.x != id:
