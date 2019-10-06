@@ -6,19 +6,17 @@ enum {MIN, MAX}
 onready var area = ConvexPolygonArea.get_convex_polygon_area($CollisionPolygon2D.polygon)
 onready var area_ratio = area / MAX_AREA
 
-const VELOCITY := 1000
+const VELOCITY := 600
 const DAMAGE := 20
 const LIFETIME := 5
 const IMPULSE_FORCE := 200
 const ROTATION_FORCE = 2
 const RADIUS := 400
-const VELOCITY_FACTOR := [1.5, 0.2]
-const DAMAGE_FACTOR := [.8, 10]
+const VELOCITY_FACTOR := [1.4, 0.02]
+const DAMAGE_FACTOR := [.5, 10]
 const MAX_AREA = 11425
 
 func _ready():
-	printt("area", area)
-	printt("area_ratio", area_ratio)
 	$Lifetime.wait_time = LIFETIME
 	$Lifetime.start()
 	$Lifetime.connect("timeout", self, "queue_free")
