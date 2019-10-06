@@ -30,9 +30,19 @@ The player drives the car by accelerating and braking, turn the inclination, and
 ## Screens
 
 1. Title
-2. Draw
-3. Race
-4. Race results
+2. Draw Chassis
+3. Draw Wheels
+4. Race
+5. Draw Chassis decoration
+6. Draw Wheels decoration
+7. Race
+8. Draw Gun
+9. Draw Bullet
+10. Race
+11. Piano
+12. Draw prop
+13. Race
+14. GOTO 12
 
 ## Draw parts
 
