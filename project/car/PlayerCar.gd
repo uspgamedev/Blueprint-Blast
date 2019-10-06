@@ -1,7 +1,9 @@
 extends BaseCar
 class_name PlayerCar
 
+const AREA_TO_HP = .008
 const ROTATION_FORCE = 400
+
 var area : float
 var bullet_info = {}
 
@@ -46,6 +48,10 @@ func _ready():
 		bullet_info["deco"] = Global.car_maker.projectile_deco
 
 		area = ConvexPolygonArea.get_convex_polygon_area(Global.car_maker.convex_hull)
+		
+		hp = area * AREA_TO_HP
+		print(area)
+		print("hp: ", hp)
 
 
 func _physics_process(delta):
