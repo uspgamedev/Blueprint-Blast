@@ -38,7 +38,7 @@ func _ready():
 			point += points[j].y
 		points[i].y = point/5
 	
-	get_node("../GoalArea2D").global_position = points[-1] - Vector2(-500, 200)
+	get_node("../GoalArea2D").global_position = points[-2] + Vector2(500, -190)
 	print(get_node("../GoalArea2D").global_position)
 	
 	points.append(Vector2(points[-1].x, 500))

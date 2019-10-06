@@ -11,6 +11,7 @@ var area : float
 var bullet_info = {}
 
 func _ready():
+	hp = 9000
 	var main = get_parent()
 	front_wheel = $FrontWheel/SpinningBody
 	back_wheel = $BackWheel/SpinningBody
