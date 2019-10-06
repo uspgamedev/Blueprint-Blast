@@ -64,6 +64,12 @@ config/icon="res://icon.png"
 
 Global="*res://Global.gd"
 
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/return_value_discarded=false
+
 [input]
 
 accelerate={
@@ -149,7 +155,7 @@ key_8={
 
 [physics]
 
-2d/default_gravity=250
+2d/default_gravity=300
 
 [rendering]
 
