@@ -8,7 +8,6 @@ var area : float
 var bullet_info = {}
 
 func _ready():
-	hp = 9000
 	var main = get_parent()
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
@@ -49,7 +48,7 @@ func _ready():
 		area = ConvexPolygonArea.get_convex_polygon_area(Global.car_maker.convex_hull)
 		
 		max_hp = area * AREA_TO_HP
-		hp = max_hp
+		update_hp(max_hp)
 		acceleration *= lerp(MAX_ACC_FACTOR, MIN_ACC_FACTOR, area / MAX_DRAW_AREA)
 		update_wheel_acceleration()
 

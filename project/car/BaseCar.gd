@@ -32,6 +32,10 @@ func update_wheel_acceleration():
 	back_acceleration = lerp(60, acceleration, min(back_wheel_area, 2000)/2000)
 	front_acceleration = lerp(60, acceleration, min(front_wheel_area, 2000)/2000)
 
+func update_hp(value):
+	hp = value
+	$HP.value = lerp(0, 100, value/max_hp)
+
 func shoot(bullet_info, pos):
 	if Global.race_state == Global.RACE_STATE.RACE:
 		var bullet = load(BULLET_PATH).instance()
@@ -74,7 +78,7 @@ func die():
 		element.applied_force = Vector2(0, 0)
 		element.applied_torque = 0
 	apply_invincibility()
-	hp = max_hp
+	update_hp(max_hp)
 
 
 func apply_invincibility():
@@ -104,6 +108,6 @@ func apply_invincibility():
 
 func apply_damage(damage : float):
 	if not invincible:
-		hp -= damage
+		update_hp(hp - damage)
 		if hp <= 0:
 			die()

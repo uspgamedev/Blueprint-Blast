@@ -9,6 +9,7 @@ var crash_time = 0
 
 func _ready():
 	bullet_cooldown = 3
+	$BulletCooldown.wait_time = bullet_cooldown
 	acceleration = ai_acceleration
 	for element in [self, front_wheel, back_wheel]:
 		element.contact_monitor = true
@@ -26,6 +27,8 @@ func handle_shooting():
 	for car in Global.car_refs:
 		if car == self: continue
 		var vector : Vector2 = car.global_position - global_position
+		if vector.length() > 2000:
+			return
 		if abs(vector.angle_to(Vector2(1, 0).rotated(global_rotation))) < 0.1:
 			if $BulletCooldown.time_left == 0:
 				shoot(null, $Cannon.global_position)
