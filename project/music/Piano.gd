@@ -1,11 +1,12 @@
 extends Control
 
-var last_button : Button = null
+onready var base_node_track = $BaseMusicMaker
+onready var melody_node_track = $MelodyMusicMaker
+var current_track
 
 func _ready():
-	for button in $VBoxContainer/HBoxContainer.get_children():
-		button.connect("button_down", self, "disable_last_button")
+	current_track = base_node_track
+	base_node_track.is_active = true
 
-func disable_last_button():
-	if last_button:
-		last_button.pressed = false
+func get_current_node_track():
+	return current_track

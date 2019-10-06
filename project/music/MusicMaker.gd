@@ -11,8 +11,9 @@ var last_note
 var start_time : float
 var song_duration : float
 var key_pressed := []
-var is_recording := true
+var is_recording := false
 var current_notes := {}
+var is_active = false
 
 func _ready():
 	update_pitch(0)
@@ -22,13 +23,9 @@ func update_pitch(offset):
 		var key = get_children()[i]
 		key.get_node("AudioStreamPlayer").pitch_scale = pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset]) 
 
-func _input(event):
-	if event.is_action_pressed("accelerate"):
-		start_recording()
-	elif event.is_action_pressed("reverse"):
-		stop_recording()
-		
 func _process(delta):
+	if not is_active:
+		return
 	if is_recording:
 		record_song(delta)
 	else:
