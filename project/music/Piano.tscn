@@ -182,5 +182,6 @@ text = "Finish Base Track"
 script = ExtResource( 5 )
 
 [node name="BaseMusicMaker" parent="." instance=ExtResource( 6 )]
+is_base = true
 
 [node name="MelodyMusicMaker" parent="." instance=ExtResource( 6 )]
