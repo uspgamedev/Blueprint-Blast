@@ -1,6 +1,9 @@
 extends BaseCar
 class_name PlayerCar
 
+const MAX_CHASSIS_AREA = 71400
+const MAX_ACC_FACTOR = 2.0
+const MIN_ACC_FACTOR = .5
 const AREA_TO_HP = .008
 const ROTATION_FORCE = 400
 
@@ -50,8 +53,7 @@ func _ready():
 		area = ConvexPolygonArea.get_convex_polygon_area(Global.car_maker.convex_hull)
 		
 		hp = area * AREA_TO_HP
-		print(area)
-		print("hp: ", hp)
+		acceleration *= lerp(MAX_ACC_FACTOR, MIN_ACC_FACTOR, area / MAX_CHASSIS_AREA)
 
 
 func _physics_process(delta):
