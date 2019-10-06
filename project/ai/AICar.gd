@@ -1,4 +1,5 @@
 extends BaseCar
+class_name AICar
 
 export var ai_force = 120
 
