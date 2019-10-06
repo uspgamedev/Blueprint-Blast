@@ -29,12 +29,13 @@ func _process(delta):
 		play_custom_song(delta)
 
 func stop_recording():
-	elapsed_time = 0
 	is_recording = false
 	last_note = 0
 	if play_sequence.size() > 0:
+		elapsed_time = play_sequence[0].y
 		song_duration = play_sequence[-1].z
 	else:
+		elapsed_time = 0
 		song_duration = 0
 
 func start_recording():
@@ -68,6 +69,9 @@ func play_custom_song(delta):
 			last_note += 1
 			get_children()[note.x].get_node("AudioStreamPlayer").stop()
 	if elapsed_time > song_duration:
-		elapsed_time = 0
+		if play_sequence.size() > 0:
+			elapsed_time = play_sequence[0].y
+		else:
+			elapsed_time = 0
 		last_note = 0
 		
