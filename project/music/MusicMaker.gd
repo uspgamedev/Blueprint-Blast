@@ -7,6 +7,7 @@ const VOLUMES = [0, -1.25, -2.5]
 
 var elapsed_time := 0.0
 var play_sequence : PoolVector3Array
+var volume_sequence : PoolVector2Array
 var last_note
 var start_time : float
 var song_duration : float
@@ -24,9 +25,7 @@ func update_pitch(offset):
 		key.get_node("AudioStreamPlayer").pitch_scale = pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset]) 
 
 func _process(delta):
-	if not is_active:
-		return
-	if is_recording:
+	if is_recording and is_active:
 		record_song(delta)
 	else:
 		play_custom_song(delta)
@@ -62,6 +61,7 @@ func record_song(delta):
 			if not audio_stream.playing:
 				audio_stream.play()
 				key_pressed.append(i)
+				volume_sequence.append(Vector2(elapsed_time, key_pressed.size()))
 				for audio_index in key_pressed:
 					var aud = get_children()[audio_index].get_node("AudioStreamPlayer")
 					aud.volume_db = VOLUMES[key_pressed.size()-1]
@@ -72,14 +72,19 @@ func record_song(delta):
 			if audio_stream.playing:
 				audio_stream.stop()
 				key_pressed.erase(i)
+				volume_sequence.append(Vector2(elapsed_time, key_pressed.size()))
 				for audio_index in key_pressed:
 					var aud = get_children()[audio_index].get_node("AudioStreamPlayer")
 					aud.volume_db = VOLUMES[key_pressed.size()-1]
 
 func play_custom_song(delta):
 	elapsed_time += delta
+	var cur_volume = 0
+	for volume in volume_sequence:
+		if volume.x < elapsed_time:
+			cur_volume = volume.y
 	for key in get_children():
-		key.handle_track(elapsed_time, play_sequence)
+		key.handle_track(elapsed_time, play_sequence, VOLUMES[cur_volume-1])
 	if elapsed_time > song_duration:
 		if play_sequence.size() > 0:
 			elapsed_time = play_sequence[0].y

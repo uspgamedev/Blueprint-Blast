@@ -10,3 +10,8 @@ func _ready():
 
 func get_current_node_track():
 	return current_track
+
+func switch_current_track():
+	base_node_track.is_active = false
+	melody_node_track.is_active = true
+	current_track = melody_node_track
