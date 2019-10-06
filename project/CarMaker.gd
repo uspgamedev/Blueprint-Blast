@@ -1,4 +1,5 @@
 extends Node
+class_name CarMaker
 
 enum States {
 	CHASSIS, CHASSIS_DECO, LEFT_WHEEL, LEFT_WHEEL_DECO,
@@ -32,18 +33,5 @@ var projectile_line : Line2D
 var projectile_deco : Array
 var state = States.CHASSIS
 
-func _ready():
-	var convex_hull : PoolVector2Array
-	var left_wheel_hull : PoolVector2Array
-	var left_wheel_line : Line2D
-	var right_wheel_hull : PoolVector2Array
-	var right_wheel_line : Line2D
-	var outline : Line2D
-	var chassis_line : Line2D
-	var chassis_deco : Array
-	var cannon : Array
-	var projectile_hull : PoolVector2Array
-	var projectile_line : Line2D
-	var projectile_deco : Array
 
 

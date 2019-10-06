@@ -6,6 +6,7 @@ var race_state = RACE_STATE.START
 var car_refs := []
 var winners := []
 var winner_list_gui
+onready var car_maker : CarMaker = CarMaker.new()
 
 func add_winner(car):
 	if not winners.has(car):
