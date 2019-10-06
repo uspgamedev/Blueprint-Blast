@@ -22,7 +22,6 @@ func _ready():
 	for x in range(1000, 20000, 50):
 		if x % 1000 == 0:
 			bias = (PI/8 + PI/12 * randf()) * (1 - 2 * (randi() % 2))
-			print("bias: ", bias)
 		var rand = gaussian(bias, PI/(float(130-10*Global.terrain_difficulty) / 3)) # Formula for (1,40)(10,10)
 		vector = vector.rotated(rand)
 		vector *= 100.0/vector.x

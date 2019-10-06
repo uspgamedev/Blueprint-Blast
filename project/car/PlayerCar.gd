@@ -47,9 +47,16 @@ func _ready():
 
 		area = ConvexPolygonArea.get_convex_polygon_area(Global.car_maker.convex_hull)
 
+
 func _physics_process(delta):
 	update_movement_with_wheels()
 	handle_shooting()
+
+
+func _unhandled_input(event):
+	if Global.race_state == Global.RACE_STATE.RACE:
+		if event.is_action_pressed("reset") and not invincible:
+			call_deferred("die")
 
 
 func handle_shooting():
