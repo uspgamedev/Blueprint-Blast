@@ -5,7 +5,7 @@ const POINTS_DIST = 1
 
 var lines = []
 var lines_backup = []
-var line_color = Color.black
+var line_color = Color("e56100")
 var line_width = 10
 var time = 0
 var is_drawing = false
