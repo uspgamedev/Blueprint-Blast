@@ -1,5 +1,7 @@
 extends Node2D
 
+export (bool) var is_base
+
 const MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11, 12]
 const NOTE_DISTANCE = [0, 2, 3, 5, 7, 9, 10]
 const FACTOR = pow(2, 1.0/12)
@@ -20,9 +22,12 @@ func _ready():
 	update_pitch(0)
 
 func update_pitch(offset):
+	var base_offset = 0
+	if is_base:
+		base_offset = -12
 	for i in range(get_children().size()):
 		var key = get_children()[i]
-		key.get_node("AudioStreamPlayer").pitch_scale = pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset]) 
+		key.get_node("AudioStreamPlayer").pitch_scale = pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset] + base_offset) 
 
 func _process(delta):
 	if is_recording and is_active:
