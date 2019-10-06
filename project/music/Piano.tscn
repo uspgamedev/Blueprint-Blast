@@ -173,7 +173,6 @@ text = "Record Base Track"
 script = ExtResource( 4 )
 
 [node name="FinishButton" type="Button" parent="."]
-visible = false
 margin_left = 747.203
 margin_top = 367.649
 margin_right = 900.203

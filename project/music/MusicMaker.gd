@@ -41,15 +41,25 @@ func stop_recording():
 	is_recording = false
 	for key in get_children():
 		key.last_note = 0
-	if play_sequence.size() > 0:
-		song_duration = elapsed_time
+	if is_base:
+		if play_sequence.size() > 0:
+			song_duration = elapsed_time
+		else:
+			song_duration = 0
 	else:
-		song_duration = 0
+		var base = get_parent().get_other_track(self)
+		song_duration = base.song_duration * ceil(elapsed_time / base.song_duration)
 	elapsed_time = 0
 	
 func start_recording():
 	if is_recording:
 		return
+	if not is_base:
+		var base = get_parent().get_other_track(self)
+		base.elapsed_time = 0.0
+		for key in base.get_children():
+			key.get_node("AudioStreamPlayer").stop()
+			key.last_note = 0
 	for key in get_children():
 		key.get_node("AudioStreamPlayer").stop()
 	elapsed_time = 0
