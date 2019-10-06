@@ -12,13 +12,15 @@ var start_time : float
 var song_duration : float
 var key_pressed := []
 var is_recording := true
-var offset := 0
 var current_notes := {}
 
 func _ready():
+	update_pitch(0)
+
+func update_pitch(offset):
 	for i in range(get_children().size()):
 		var key = get_children()[i]
-		key.get_node("AudioStreamPlayer").pitch_scale *= pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset]) 
+		key.get_node("AudioStreamPlayer").pitch_scale = pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset]) 
 
 func _input(event):
 	if event.is_action_pressed("accelerate"):
@@ -77,17 +79,8 @@ func record_song(delta):
 
 func play_custom_song(delta):
 	elapsed_time += delta
-	prints(play_sequence, elapsed_time)
 	for key in get_children():
 		key.handle_track(elapsed_time, play_sequence)
-#	for i in range(last_note, play_sequence.size()):
-#		var note = play_sequence[i]
-#		if note.y <= elapsed_time and note.z > elapsed_time and not get_children()[note.x].get_node("AudioStreamPlayer").playing:
-#			last_note = i
-#			get_children()[note.x].get_node("AudioStreamPlayer").play()
-#		elif note.z < elapsed_time and get_children()[note.x].get_node("AudioStreamPlayer").playing:
-#			last_note += 1
-#			get_children()[note.x].get_node("AudioStreamPlayer").stop()
 	if elapsed_time > song_duration:
 		if play_sequence.size() > 0:
 			elapsed_time = play_sequence[0].y
