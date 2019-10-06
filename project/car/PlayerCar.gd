@@ -18,6 +18,7 @@ func _ready():
 		for line in CarMaker.cannon:
 			if (line):
 				$Cannon.add_child(line)
+		$Cannon.position = CarMaker.cannon_position
 
 		#Chassis
 		$CollisionShape2D.shape.points = CarMaker.convex_hull

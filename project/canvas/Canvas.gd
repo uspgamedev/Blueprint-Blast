@@ -11,8 +11,6 @@ var drawing_scale = 1
 var time = 0
 
 func _input(event):
-#	if event.is_action_pressed("canvas_clear"):
-#		clear()
 	if event.is_action_pressed("canvas_click") and can_draw:
 		var point = get_local_mouse_position()
 		if point.x >= 0 and point.x <= rect_size.x and point.y >= 0 and point.y <= rect_size.y:

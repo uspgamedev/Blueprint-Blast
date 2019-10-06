@@ -1,13 +1,12 @@
 extends Control
 
 onready var canvas = $VBoxContainer/Canvas
-var scale = 1
+
 
 func _ready():
 	$Label.text = CarMaker.STATES_NAME[CarMaker.state]
 	canvas.get_node("Outline").texture = load(CarMaker.STATES_IMAGES[CarMaker.state])
-	canvas.get_node("Outline").rect_position -= canvas.get_node("Outline").texture.get_size() * scale/2
-	canvas.get_node("Outline").rect_scale *= scale 
+	canvas.get_node("Outline").rect_position -= canvas.get_node("Outline").texture.get_size() /2
 
 func _on_Clear_pressed():
 	canvas.clear()

@@ -1,13 +1,11 @@
 extends Control
 
 onready var canvas = $VBoxContainer/HBoxContainer2/DecorationCanvas
-var scale = 1
 
 func _ready():
 	$Label.text = CarMaker.STATES_NAME[CarMaker.state]
 	canvas.get_node("Outline").texture = load(CarMaker.STATES_IMAGES[CarMaker.state])
-	canvas.get_node("Outline").rect_position -= canvas.get_node("Outline").texture.get_size() * scale /2
-	canvas.get_node("Outline").rect_scale *= scale
+	canvas.get_node("Outline").rect_position -= canvas.get_node("Outline").texture.get_size()/2
 	if CarMaker.outline:
 		canvas.add_child(CarMaker.outline)
 
@@ -26,7 +24,7 @@ func _on_Accept_pressed():
 		CarMaker.chassis_deco = canvas.get_scaled_lines()
 		for line in CarMaker.chassis_deco:
 			line.position -= canvas.rect_size / 2
-			
+		
 		CarMaker.state = CarMaker.States.LEFT_WHEEL
 		get_tree().change_scene("res://canvas/Editor.tscn")
 		
@@ -52,11 +50,25 @@ func _on_Accept_pressed():
 	elif CarMaker.state == CarMaker.States.CANNON:
 		canvas.drawing_scale = .3
 		CarMaker.cannon = canvas.get_scaled_lines()
+		
 		for line in CarMaker.cannon:
 			line.position -= canvas.rect_size / 2
-			
-		CarMaker.state = CarMaker.States.PROJECTILE
-		get_tree().change_scene("res://canvas/Editor.tscn")
+		
+		CarMaker.outline = CarMaker.chassis_line
+		CarMaker.outlines = []
+		for line in CarMaker.chassis_deco:
+			var new_line = line.duplicate()
+			new_line.position += canvas.rect_size/2
+			var center = rect_size/2
+			for i in range(new_line.get_point_count()):
+				var point = new_line.points[i]
+				new_line.set_point_position(i, center + (point - center)/.5)
+			CarMaker.outlines.append(line.duplicate())
+		
+		CarMaker.placing_object = CarMaker.cannon
+		
+		CarMaker.state = CarMaker.States.PLACE_CANNON
+		get_tree().change_scene("res://canvas/PlacementEditor.tscn")
 	
 	elif CarMaker.state == CarMaker.States.PROJECTILE_DECO:
 		canvas.drawing_scale = .3
