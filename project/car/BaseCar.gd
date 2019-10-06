@@ -45,6 +45,7 @@ func go_forward():
 		back_wheel.apply_torque_impulse(acceleration)
 		front_wheel.apply_torque_impulse(acceleration)
 
+
 func go_backward():
 	if Global.race_state == Global.RACE_STATE.RACE:
 		back_wheel.apply_torque_impulse(-acceleration)
@@ -87,7 +88,9 @@ func apply_invincibility():
 	tween.queue_free()
 	invincible = false
 
+
 func apply_damage(damage : float):
-	hp -= damage
-	if hp <= 0:
-		die()
+	if not invincible:
+		hp -= damage
+		if hp <= 0:
+			die()
