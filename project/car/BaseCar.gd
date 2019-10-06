@@ -59,6 +59,7 @@ func die():
 		element.applied_force = Vector2(0, 0)
 		element.applied_torque = 0
 	apply_invincibility()
+	hp = 100
 
 
 func apply_invincibility():

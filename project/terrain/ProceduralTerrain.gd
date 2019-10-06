@@ -14,12 +14,13 @@ func _ready():
 #	points.append(Vector2(0, 100))
 	randomize()
 	
+	points.append(Vector2(-500, -600))
 	points.append(Vector2(0, 0))
 	points.append(Vector2(950, 0))
 	
 	var vector = Vector2(1, 0)
 	var bias = 0
-	for x in range(1000, 20000, 50):
+	for x in range(1000, 10000, 50):
 		if x % 1000 == 0:
 			bias = (PI/8 + PI/12 * randf()) * (1 - 2 * (randi() % 2))
 		var rand = gaussian(bias, PI/(float(130-10*Global.terrain_difficulty) / 3)) # Formula for (1,40)(10,10)
@@ -28,11 +29,20 @@ func _ready():
 		points.append(Vector2(x, vector.y))
 		vector = Vector2(1, 0)
 	
-	for i in range(2, points.size() - 2):
-		points[i].y = (points[i-2].y + points[i-1].y + points[i].y + points[i+1].y + points[i+2].y)/5
+	points.append(Vector2(10000, points[-1].y))
+	points.append(Vector2(11000, points[-1].y))
 	
-	points.append(Vector2(points[points.size()-1].x, 500))
-	points.append(Vector2(0, 500))
+	for i in range(3, points.size() - 3):
+		var point := 0.0
+		for j in range(i-2, i+3):
+			point += points[j].y
+		points[i].y = point/5
+	
+	get_node("../GoalArea2D").global_position = points[-1] - Vector2(-500, 200)
+	print(get_node("../GoalArea2D").global_position)
+	
+	points.append(Vector2(points[-1].x, 500))
+	points.append(Vector2(-500, 500))
 	
 	$CollisionPolygon2D.polygon = points
 	$Polygon2D.polygon = points

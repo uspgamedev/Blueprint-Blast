@@ -8,6 +8,7 @@ const MAX_CRASH_TIME = 2
 var crash_time = 0
 
 func _ready():
+	bullet_cooldown = 3
 	acceleration = ai_acceleration
 	for element in [self, front_wheel, back_wheel]:
 		element.contact_monitor = true
