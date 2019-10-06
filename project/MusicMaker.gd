@@ -1,6 +1,7 @@
 extends Node2D
 
 const MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11, 12]
+const NOTE_DISTANCE = [0, 2, 3, 5, 7, 9, 10]
 const FACTOR = pow(2, 1.0/12)
 
 var elapsed_time := 0.0
@@ -10,11 +11,12 @@ var start_time : float
 var song_duration : float
 var key_pressed := -1
 var is_recording := true
+var offset := 0
 
 func _ready():
 	for i in range(get_children().size()):
 		var key = get_children()[i]
-		key.get_node("AudioStreamPlayer").pitch_scale *= pow(FACTOR, MAJOR_SCALE[i]) 
+		key.get_node("AudioStreamPlayer").pitch_scale *= pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset]) 
 
 func _input(event):
 	if event.is_action_pressed("accelerate"):
@@ -29,6 +31,8 @@ func _process(delta):
 		play_custom_song(delta)
 
 func stop_recording():
+	if not is_recording:
+		return
 	is_recording = false
 	last_note = 0
 	if play_sequence.size() > 0:
@@ -48,11 +52,11 @@ func start_recording():
 func record_song(delta):
 	elapsed_time += delta
 	for i in range(get_children().size()):
-		if Input.is_action_pressed(str("key_", i)) and key_pressed < 0:
-			key_pressed = i 
+		if Input.is_action_pressed(str("key_", i+1)) and key_pressed < 0:
+			key_pressed = i
 			start_time = elapsed_time
 			get_children()[i].get_node("AudioStreamPlayer").play()
-		elif key_pressed == i and not Input.is_action_pressed(str("key_", i)):
+		elif key_pressed == i and not Input.is_action_pressed(str("key_", i+1)):
 			key_pressed = -1
 			var vector = Vector3(i, start_time, elapsed_time)
 			play_sequence.append(vector)
