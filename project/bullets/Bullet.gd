@@ -30,8 +30,8 @@ func explode():
 		var impulse : float = lerp(0, IMPULSE_FORCE, magnitude)
 		car.apply_impulse(Vector2(0, 0), vector.normalized() * impulse)
 		randomize()
-		car.back_wheel.apply_impulse(Vector2(0, 0), -vector.normalized().rotated(PI/2) * impulse * ROTATION_FORCE)
-		car.front_wheel.apply_impulse(Vector2(0, 0), vector.normalized().rotated(PI/2) * impulse * ROTATION_FORCE)
+#		car.back_wheel.apply_impulse(Vector2(0, 0), -vector.normalized().rotated(PI/2) * impulse * ROTATION_FORCE)
+#		car.front_wheel.apply_impulse(Vector2(0, 0), vector.normalized().rotated(PI/2) * impulse * ROTATION_FORCE)
 		var damage = inverse_lerp(0, IMPULSE_FORCE, impulse) * DAMAGE *\
 			 lerp(DAMAGE_FACTOR[MIN], DAMAGE_FACTOR[MAX], area_ratio)
 		car.apply_damage(damage)

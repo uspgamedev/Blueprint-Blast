@@ -9,12 +9,12 @@ extents = Vector2( 2.93827, 2.75364 )
 script = ExtResource( 1 )
 
 [node name="SpinningBody" type="RigidBody2D" parent="."]
-position = Vector2( 0.197914, 8.51024 )
+position = Vector2( 0, 8.5 )
 collision_mask = 6
 continuous_cd = 1
 
 [node name="Polygon2D" type="CollisionPolygon2D" parent="SpinningBody"]
-polygon = PoolVector2Array( 0.0561218, -21.3681, -9.41053, -18.9271, -15.7812, -14.283, -18.8176, -10.8893, -21.1992, -6.42393, -21.6755, 0.0657825, -21.7946, 5.30519, -20.5443, 8.81797, -17.6269, 12.2117, -14.1736, 15.4268, -8.51745, 16.9748, -1.6705, 17.4511, 2.97352, 17.3915, 7.97477, 16.7962, 14.5836, 14.3551, 18.9299, 10.0683, 21.1328, 5.4838, 21.8473, 0.18486, 21.49, -6.18578, 19.8825, -9.7581, 15.7148, -13.8067, 10.5945, -17.4981, 5.47414, -19.9988 )
+polygon = PoolVector2Array( 4.99668, -17.4816, 10.5059, -14.2863, 15.9049, -9.10767, 17.8882, -3.37812, 17.5576, 3.45327, 15.4641, 9.51337, 10.9608, 15.1387, 3.12356, 17.7772, -3.75959, 17.6336, -12.4123, 12.8189, -15.8798, 7.05595, -17.4224, -1.09765, -15.4391, -9.69197, -10.8129, -15.3129, -2.38563, -17.8122 )
 
 [node name="Spring" type="DampedSpringJoint2D" parent="SpinningBody"]
 visible = false
@@ -44,7 +44,7 @@ initial_offset = 8.0
 
 [node name="Dull" type="RigidBody2D" parent="."]
 visible = false
-position = Vector2( 0.0595379, 8.63311 )
+position = Vector2( 0, 8.5 )
 collision_layer = 0
 collision_mask = 0
 

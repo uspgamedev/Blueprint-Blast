@@ -1,9 +1,6 @@
 extends BaseCar
 class_name PlayerCar
 
-const MAX_CHASSIS_AREA = 71400
-const MAX_ACC_FACTOR = 2.0
-const MIN_ACC_FACTOR = .5
 const AREA_TO_HP = .008
 const ROTATION_FORCE = 400
 
@@ -13,8 +10,6 @@ var bullet_info = {}
 func _ready():
 	hp = 9000
 	var main = get_parent()
-	front_wheel = $FrontWheel/SpinningBody
-	back_wheel = $BackWheel/SpinningBody
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
 	if main.get("car_refs"):
@@ -55,7 +50,8 @@ func _ready():
 		
 		max_hp = area * AREA_TO_HP
 		hp = max_hp
-		acceleration *= lerp(MAX_ACC_FACTOR, MIN_ACC_FACTOR, area / MAX_CHASSIS_AREA)
+		acceleration *= lerp(MAX_ACC_FACTOR, MIN_ACC_FACTOR, area / MAX_DRAW_AREA)
+		update_wheel_acceleration()
 
 
 func _physics_process(delta):
