@@ -24,5 +24,7 @@ func button_press():
 			for key in other_track.get_children():
 				key.last_note = 0
 				key.get_node("AudioStreamPlayer").stop()
+			print(other_track.play_sequence)
+			print(current_track.play_sequence)
 		get_node("../FinishButton").show()
 
