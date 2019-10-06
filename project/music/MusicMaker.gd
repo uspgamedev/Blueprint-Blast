@@ -5,7 +5,7 @@ export (bool) var is_base
 const MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11, 12]
 const NOTE_DISTANCE = [0, 2, 3, 5, 7, 9, 10]
 const FACTOR = pow(2, 1.0/12)
-const VOLUMES = [0, -1.25, -2.5]
+const VOLUMES = [0, -log(2)*10, -log(3)*10]
 
 var elapsed_time := 0.0
 var play_sequence : PoolVector3Array
@@ -24,7 +24,7 @@ func _ready():
 func update_pitch(offset):
 	var base_offset = 0
 	if is_base:
-		base_offset = -12
+		base_offset = -7
 	for i in range(get_children().size()):
 		var key = get_children()[i]
 		key.get_node("AudioStreamPlayer").pitch_scale = pow(FACTOR, MAJOR_SCALE[i] + NOTE_DISTANCE[offset] + base_offset) 
@@ -39,6 +39,11 @@ func stop_recording():
 	if not is_recording:
 		return
 	is_recording = false
+	for key in key_pressed:
+		current_notes[key].z = elapsed_time
+		play_sequence.append(current_notes[key])
+	current_notes.clear()
+	key_pressed.clear()
 	for key in get_children():
 		key.last_note = 0
 	if is_base:
@@ -48,7 +53,10 @@ func stop_recording():
 			song_duration = 0
 	else:
 		var base = get_parent().get_other_track(self)
-		song_duration = base.song_duration * ceil(elapsed_time / base.song_duration)
+		if base.song_duration > 0:
+			song_duration = base.song_duration * ceil(elapsed_time / base.song_duration)
+		else:
+			song_duration = elapsed_time
 	elapsed_time = 0
 	
 func start_recording():
