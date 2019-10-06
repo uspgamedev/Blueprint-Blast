@@ -48,6 +48,8 @@ func stop_recording():
 		song_duration = 0
 
 func start_recording():
+	if is_recording:
+		return
 	for key in get_children():
 		key.get_node("AudioStreamPlayer").stop()
 	elapsed_time = 0
