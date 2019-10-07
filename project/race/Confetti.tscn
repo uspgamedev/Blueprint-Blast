@@ -28,7 +28,7 @@ hue_variation_random = 1.0
 
 [node name="Confetti" type="Particles2D"]
 emitting = false
-amount = 300
+amount = 200
 lifetime = 5.0
 one_shot = true
 speed_scale = 6.0
