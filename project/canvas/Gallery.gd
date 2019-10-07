@@ -1,10 +1,5 @@
 extends Control
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var i = 1
 	for car_maker in Global.car_makers:
@@ -23,6 +18,7 @@ func _on_car_clicked(index):
 	Global.terrain_length = 10000
 	Global.shooting_enabled = true
 	Global.race_instructions = null
+	Global.car_refs = []
 	get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 
 func _on_AddButton_pressed():
