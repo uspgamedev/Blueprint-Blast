@@ -22,6 +22,7 @@ var area : float
 
 onready var front_wheel = get_node("FrontWheel/SpinningBody")
 onready var back_wheel = get_node("BackWheel/SpinningBody")
+onready var motor_sfx : AudioStreamPlayer2D = $MotorSFX
 
 func _ready():
 	friction = 0.2

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://car/BaseCar.gd" type="Script" id=1]
 [ext_resource path="res://assets/hp-bar.png" type="Texture" id=2]
 [ext_resource path="res://car/WheelWithDull.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sphere.png" type="Texture" id=4]
+[ext_resource path="res://assets/motor.ogg" type="AudioStream" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -23,6 +24,7 @@ spread = 2.0
 gravity = Vector3( 0, 98, 0 )
 initial_velocity = 1000.0
 initial_velocity_random = 0.5
+angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.3
@@ -79,3 +81,7 @@ amount = 100
 local_coords = false
 process_material = SubResource( 5 )
 texture = ExtResource( 4 )
+
+[node name="MotorSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
