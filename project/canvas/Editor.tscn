@@ -1,15 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://canvas/Editor.gd" type="Script" id=1]
 [ext_resource path="res://assets/bptex.png" type="Texture" id=2]
 [ext_resource path="res://ui/EditorButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://canvas/Canvas.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/fonts/PWScratchedfont.ttf" type="DynamicFontData" id=5]
-
-[sub_resource type="DynamicFont" id=1]
-size = 52
-use_filter = true
-font_data = ExtResource( 5 )
+[ext_resource path="res://assets/fonts/editor-title-font.tres" type="DynamicFont" id=5]
 
 [node name="Editor" type="Control"]
 anchor_right = 1.0
@@ -65,7 +60,7 @@ margin_left = -512.0
 margin_top = 10.0
 margin_right = 512.0
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "CURRENT STEP"
 align = 1
 [connection signal="pressed" from="HBox/VBox/Clear" to="." method="_on_Clear_pressed"]

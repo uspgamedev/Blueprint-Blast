@@ -31,7 +31,9 @@ func _on_GoalArea2D_area_entered(area):
 			Global.winners.clear()
 			match Global.car_maker.state:
 				CarMaker.States.CHASSIS_DECO:
-					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+					Global.car_maker.state = CarMaker.States.GALLERY
+					get_tree().change_scene("res://canvas/Gallery.tscn")
+#					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 				CarMaker.States.CANNON:
 					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 				CarMaker.States.MUSIC:

@@ -14,7 +14,7 @@ func _ready():
 		var car_representation = load("res://canvas/CarRepresentation.tscn").instance()
 		car_representation.get_node("CarPosition").add_child(car)
 		car_representation.get_node("Button").connect("pressed", self, "_on_car_clicked", [i-2])
-		$VBoxContainer/Cars/GridContainer.add_child(car_representation)
+		$Cars/GridContainer.add_child(car_representation)
 
 func _on_car_clicked(index):
 	Global.car_maker = Global.car_makers[index]
