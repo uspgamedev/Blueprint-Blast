@@ -6,7 +6,7 @@ func _ready():
 	if Global.race_instructions and has_node("Instructions"):
 		$Instructions.show()
 		$Instructions/Label.text = Global.race_instructions
-	elif $Instructions:
+	elif has_node("Instructions"):
 		$Instructions.hide()
 
 
@@ -32,6 +32,7 @@ func _on_SemaphoreTimer_timeout():
 			hide_semaphore($HUD/Semaphore/light3, .16)
 			hide_semaphore($HUD/Semaphore/light4, .24)
 
+
 func show_semaphore(sema, color):
 	sema.modulate = color
 	var tween = Tween.new()
@@ -40,6 +41,7 @@ func show_semaphore(sema, color):
 	tween.start()
 	yield(tween, "tween_completed")
 	tween.queue_free()
+
 
 func hide_semaphore(sema, delay):
 	yield(get_tree().create_timer(delay), "timeout")
@@ -51,16 +53,26 @@ func hide_semaphore(sema, delay):
 	tween.queue_free()
 
 
-
 func _on_GoalArea2D_area_entered(area):
 	var car = area.get_parent()
 	if car is BaseCar:
 		Global.add_winner(car)
 		if car is PlayerCar:
-			end_race(car.position)
+			end_race(car.position, (Global.winners.size() == 1))
 
 
-func end_race(player_position):
+func end_race(player_position, player_won):
+	var confetti = load("res://race/Confetti.tscn").instance()
+	confetti.position.x = $RaceTrack/GoalArea2D.position.x
+	confetti.position.y = player_position.y
+	confetti.emitting = true
+	add_child(confetti)
+	
+	if player_won:
+		$CheerSFX.play()
+	else:
+		$BooSFX.play()
+	
 	Engine.time_scale = .2
 	var wait_time = 3 * Engine.time_scale
 	yield(get_tree().create_timer(wait_time), "timeout")

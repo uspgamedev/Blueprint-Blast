@@ -5,13 +5,13 @@ func _ready():
 	Global.winner_list_gui = self
 	
 func _on_list_updated(winners):
-	text = "WINNERS\n"
+	text = " WINNERS\n"
 	
 	var i = 1
 	for winner in winners:
-		text += str(i)
+		text += " " + str(i)
 		if winner is AICar:
-			text += ". PC"
+			text += ". CPU"
 		else:
 			text += ". Player"
 		text += "\n"
