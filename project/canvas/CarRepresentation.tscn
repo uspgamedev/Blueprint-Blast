@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/blueprint.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 196.684, 10 )
@@ -7,9 +9,15 @@ extents = Vector2( 196.684, 10 )
 extents = Vector2( 5.18851, 161.016 )
 
 [node name="CarRepresentation" type="MarginContainer"]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 400, 400 )
+margin_right = 400.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 400, 320 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 400.0
+margin_bottom = 320.0
+texture = ExtResource( 1 )
+expand = true
 
 [node name="CarPosition" type="Node2D" parent="."]
 position = Vector2( 193.99, 18.5608 )
@@ -30,5 +38,5 @@ shape = SubResource( 2 )
 
 [node name="Button" type="Button" parent="."]
 margin_right = 400.0
-margin_bottom = 400.0
+margin_bottom = 320.0
 flat = true
