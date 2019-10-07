@@ -15,7 +15,7 @@ const STATES_NAME = [
 const STORY_NAME = [
 	"Lets draw a car", "This car is boring, lets pimp it up", "We need a wheel", "Pimp that wheel",
 	"pretty sure cars need two wheels", "That other one too",
-	"Lets get explosive, draw a cannon", "We'll need a projectile to shoot", "Make it DANGEROUS", "Music"
+	"Lets get explosive, draw a cannon", "We need a projectile to shoot", "Make it DANGEROUS", "Music"
 ]
 
 const STATES_IMAGES = [
