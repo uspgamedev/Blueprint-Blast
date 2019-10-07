@@ -56,9 +56,9 @@ autostart = true
 
 [node name="Semaphore" type="Control" parent="HUD"]
 margin_left = 192.699
-margin_top = 393.234
+margin_top = 301.179
 margin_right = 232.699
-margin_bottom = 433.234
+margin_bottom = 341.179
 
 [node name="light1" type="TextureRect" parent="HUD/Semaphore"]
 modulate = Color( 0, 0, 0, 1 )
