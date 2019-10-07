@@ -6,7 +6,7 @@ const onomatopoeias = ["BOOM!!", "KABOOM!!", "BANG!!", "POW!!", "BLAM!!",
 
 func _ready():
 	$AudioStreamPlayer2D.play()
-	$AudioStreamPlayer2D.pitch_scale += randf()*4 - 2
+	$AudioStreamPlayer2D.pitch_scale += randf()*2
 	randomize()
 	rotation_degrees = rand_range(-20, 20)
 	$Label.text = onomatopoeias[randi() % onomatopoeias.size()]
