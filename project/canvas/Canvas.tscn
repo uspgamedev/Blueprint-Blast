@@ -12,13 +12,14 @@ expand = true
 script = ExtResource( 2 )
 
 [node name="Texture" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.313726 )
+modulate = Color( 1, 1, 1, 0.117647 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )
 expand = true
 
 [node name="Line2D" type="Line2D" parent="."]
+texture_mode = 0
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2

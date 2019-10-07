@@ -1,6 +1,6 @@
 extends Control
 
-onready var canvas = $VBoxContainer/Canvas
+onready var canvas = $HBox/Canvas
 var scale = 1
 
 func _ready():

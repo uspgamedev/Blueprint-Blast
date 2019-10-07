@@ -44,11 +44,10 @@ func explode():
 			 lerp(DAMAGE_FACTOR[MIN], DAMAGE_FACTOR[MAX], area_ratio)
 		car.apply_damage(damage)
 		
-	destroy()	
+	destroy()
 	
 	
 func destroy():
-	print("explode")
 	queue_free()
 
 # warning-ignore:unused_argument

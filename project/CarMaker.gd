@@ -71,8 +71,6 @@ func load_from_string(file : File):
 		var name = file.get_line()
 		var value = file.get_line()
 		var type = typeof(self.get(name))
-		print_debug("name: ", name)
-		print_debug("value: ", value)
 		match type:
 			TYPE_VECTOR2_ARRAY:
 				self.set(name, StringPoolConverter.string_to_pool_array(value))
