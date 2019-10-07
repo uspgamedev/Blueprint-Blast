@@ -40,7 +40,7 @@ func update_hp(value):
 	$HP.value = lerp(0, 100, value/max_hp)
 
 func shoot(bullet_info, pos):
-	if Global.race_state == Global.RACE_STATE.RACE:
+	if Global.race_state == Global.RACE_STATE.RACE and Global.shooting_enabled:
 		var bullet = load(BULLET_PATH).instance()
 		bullet.global_rotation = global_rotation
 		bullet.add_collision_exception_with(self)
@@ -119,48 +119,48 @@ func apply_damage(damage : float):
 	
 
 func load_car_maker(car_maker: CarMaker):
-	if car_maker.state == CarMaker.States.DONE:
-		front_wheel = $FrontWheel/SpinningBody
-		back_wheel = $BackWheel/SpinningBody
+	front_wheel = $FrontWheel/SpinningBody
+	back_wheel = $BackWheel/SpinningBody
+
+	#Chassis
+	$CollisionShape2D.shape = ConvexPolygonShape2D.new()
+	$CollisionShape2D.shape.points = car_maker.convex_hull
+	add_child(get_line2d(car_maker.chassis_line_points))
+	for i in range(car_maker.chassis_deco.size()):
+		if (car_maker.chassis_deco[i]):
+			add_child(get_line2d(car_maker.chassis_deco[i], car_maker.chassis_deco_color[i], car_maker.chassis_deco_width[i]))
+
+	#Backwheel
+	back_wheel.add_child(get_line2d(car_maker.left_wheel_line_points))
 	
-		#Chassis
-		$CollisionShape2D.shape = ConvexPolygonShape2D.new()
-		$CollisionShape2D.shape.points = car_maker.convex_hull
-		add_child(get_line2d(car_maker.chassis_line_points))
-		for i in range(car_maker.chassis_deco.size()):
-			if (car_maker.chassis_deco[i]):
-				add_child(get_line2d(car_maker.chassis_deco[i], car_maker.chassis_deco_color[i], car_maker.chassis_deco_width[i]))
+	for i in range(car_maker.left_wheel_deco.size()):
+		if (car_maker.left_wheel_deco[i]):
+			back_wheel.add_child(get_line2d(car_maker.left_wheel_deco[i], car_maker.left_wheel_deco_color[i], car_maker.left_wheel_deco_width[i]))
+	back_wheel.get_parent().set_wheel_polygon(car_maker.left_wheel_hull)
 
-		#Backwheel
-		back_wheel.add_child(get_line2d(car_maker.left_wheel_line_points))
-		
-		for i in range(car_maker.left_wheel_deco.size()):
-			if (car_maker.left_wheel_deco[i]):
-				back_wheel.add_child(get_line2d(car_maker.left_wheel_deco[i], car_maker.left_wheel_deco_color[i], car_maker.left_wheel_deco_width[i]))
-		back_wheel.get_parent().set_wheel_polygon(car_maker.left_wheel_hull)
+	#Frontwheel
+	front_wheel.add_child(get_line2d(car_maker.right_wheel_line_points))
+	
+	for i in range(car_maker.right_wheel_deco.size()):
+		if (car_maker.right_wheel_deco[i]):
+			front_wheel.add_child(get_line2d(car_maker.right_wheel_deco[i], car_maker.right_wheel_deco_color[i], car_maker.right_wheel_deco_width[i]))
+	front_wheel.get_parent().set_wheel_polygon(car_maker.right_wheel_hull)
+	
+	#Cannon
+	for i in range(car_maker.cannon_deco.size()):
+		if (car_maker.cannon_deco[i]):
+			$Cannon.add_child(get_line2d(car_maker.cannon_deco[i], car_maker.cannon_color[i], car_maker.cannon_width[i]))
 
-		#Frontwheel
-		front_wheel.add_child(get_line2d(car_maker.right_wheel_line_points))
-		
-		for i in range(car_maker.right_wheel_deco.size()):
-			if (car_maker.right_wheel_deco[i]):
-				front_wheel.add_child(get_line2d(car_maker.right_wheel_deco[i], car_maker.right_wheel_deco_color[i], car_maker.right_wheel_deco_width[i]))
-		front_wheel.get_parent().set_wheel_polygon(car_maker.right_wheel_hull)
-		
-		#Cannon
-		for i in range(car_maker.cannon_deco.size()):
-			if (car_maker.cannon_deco[i]):
-				$Cannon.add_child(get_line2d(car_maker.cannon_deco[i], car_maker.cannon_color[i], car_maker.cannon_width[i]))
+	#Bullet
+	bullet_info["hull"] = car_maker.projectile_hull
+	bullet_info["line"] = car_maker.projectile_line_points
+	bullet_info["deco"] = car_maker.projectile_deco
+	bullet_info["deco_color"] = car_maker.projectile_deco_color
+	bullet_info["deco_width"] = car_maker.projectile_deco_width
 
-		#Bullet
-		bullet_info["hull"] = car_maker.projectile_hull
-		bullet_info["line"] = car_maker.projectile_line_points
-		bullet_info["deco"] = car_maker.projectile_deco
-		bullet_info["deco_color"] = car_maker.projectile_deco_color
-		bullet_info["deco_width"] = car_maker.projectile_deco_width
+	area = ConvexPolygonArea.get_convex_polygon_area(car_maker.convex_hull)
 
-		area = ConvexPolygonArea.get_convex_polygon_area(car_maker.convex_hull)
-		
+
 func get_line2d(car_maker_points, color = null, width = null):
 	var line = Line2D.new()
 	line.position -= Global.canvas_offset

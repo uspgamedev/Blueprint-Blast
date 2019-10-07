@@ -21,4 +21,16 @@ func _on_GoalArea2D_area_entered(area):
 	var car = area.get_parent()
 	if car is BaseCar:
 		Global.add_winner(car)
+		if car is PlayerCar:
+			yield(get_tree().create_timer(1), "timeout")
+			Global.race_state = Global.RACE_STATE.START
+			Global.car_refs.clear()
+			Global.winners.clear()
+			match Global.car_maker.state:
+				CarMaker.States.CHASSIS_DECO:
+					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+				CarMaker.States.CANNON:
+					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+				CarMaker.States.MUSIC:
+					get_tree().change_scene("res://music/Piano.tscn")
 

@@ -20,7 +20,7 @@ func _ready():
 	
 	var vector = Vector2(1, 0)
 	var bias = 0
-	for x in range(1000, 10000, 50):
+	for x in range(1000, Global.terrain_length, 50):
 		if x % 1000 == 0:
 			bias = (PI/8 + PI/12 * randf()) * (1 - 2 * (randi() % 2))
 		var rand = gaussian(bias, PI/(float(130-10*Global.terrain_difficulty) / 3)) # Formula for (1,40)(10,10)
@@ -29,8 +29,8 @@ func _ready():
 		points.append(Vector2(x, vector.y))
 		vector = Vector2(1, 0)
 	
-	points.append(Vector2(10000, points[-1].y))
-	points.append(Vector2(11000, points[-1].y))
+	points.append(Vector2(Global.terrain_length, points[-1].y))
+	points.append(Vector2(Global.terrain_length+1000, points[-1].y))
 	
 	for i in range(3, points.size() - 3):
 		var point := 0.0

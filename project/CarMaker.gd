@@ -4,12 +4,12 @@ class_name CarMaker
 enum States {
 	CHASSIS, CHASSIS_DECO, LEFT_WHEEL, LEFT_WHEEL_DECO,
 	RIGHT_WHEEL, RIGHT_WHEEL_DECO, CANNON,
-	PROJECTILE, PROJECTILE_DECO, DONE}
+	PROJECTILE, PROJECTILE_DECO, MUSIC}
 
 const STATES_NAME = [
 	"Chassis", "Chassis Decoration", "Left Wheel", "Left Wheel Decoration",
 	"Right Wheel", "Right Wheel Decoration",
-	"Cannon", "Projectile", "Projectile Decoration", "Done"
+	"Cannon", "Projectile", "Projectile Decoration", "Music"
 ]
 const STATES_IMAGES = [
 	"res://assets/carro.png", "res://assets/carro.png", "res://assets/roda.png",
@@ -29,6 +29,9 @@ var right_wheel_deco : Array
 var right_wheel_deco_color : Array
 var right_wheel_deco_width : Array
 var outline : Line2D
+var chassis_outline : Line2D
+var left_wheel_outline : Line2D
+var right_wheel_outline : Line2D
 var chassis_line_points : PoolVector2Array
 var chassis_deco : Array
 var chassis_deco_color : Array
@@ -62,7 +65,6 @@ func _init():
 	projectile_deco_width = []
 	
 func load_from_string(file : File):
-	state = States.DONE
 	var index = 1
 
 	while not file.eof_reached():

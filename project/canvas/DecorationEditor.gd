@@ -28,9 +28,14 @@ func _on_Accept_pressed():
 			Global.car_maker.chassis_deco.append(line.points)
 			Global.car_maker.chassis_deco_color.append(line.default_color)
 			Global.car_maker.chassis_deco_width.append(line.width)
-			
-		Global.car_maker.state = CarMaker.States.LEFT_WHEEL
-		get_tree().change_scene("res://canvas/Editor.tscn")
+		
+		if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+			Global.car_maker.state = CarMaker.States.LEFT_WHEEL
+			get_tree().change_scene("res://canvas/Editor.tscn")
+		else:
+			Global.car_maker.state = CarMaker.States.LEFT_WHEEL_DECO
+			Global.car_maker.outline = Global.car_maker.left_wheel_outline
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 		
 	elif Global.car_maker.state == CarMaker.States.LEFT_WHEEL_DECO:
 		canvas.drawing_scale = .3
@@ -39,8 +44,13 @@ func _on_Accept_pressed():
 			Global.car_maker.left_wheel_deco_color.append(line.default_color)
 			Global.car_maker.left_wheel_deco_width.append(line.width)
 		
-		Global.car_maker.state = CarMaker.States.RIGHT_WHEEL
-		get_tree().change_scene("res://canvas/Editor.tscn")
+		if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+			Global.car_maker.state = CarMaker.States.RIGHT_WHEEL
+			get_tree().change_scene("res://canvas/Editor.tscn")
+		else:
+			Global.car_maker.state = CarMaker.States.RIGHT_WHEEL_DECO
+			Global.car_maker.outline = Global.car_maker.right_wheel_outline
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 	
 	elif Global.car_maker.state == CarMaker.States.RIGHT_WHEEL_DECO:
 		canvas.drawing_scale = .3
@@ -50,8 +60,16 @@ func _on_Accept_pressed():
 			Global.car_maker.right_wheel_deco_width.append(line.width)
 		
 		Global.car_maker.outline = null
-		Global.car_maker.state = CarMaker.States.CANNON
-		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		
+		if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+			Global.car_maker.state = CarMaker.States.CANNON
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		else:
+			Global.car_maker.state = CarMaker.States.CANNON
+			Global.terrain_difficulty = 3
+			Global.terrain_length = 4000
+			Global.shooting_enabled = false
+			get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 		
 	elif Global.car_maker.state == CarMaker.States.CANNON:
 		canvas.drawing_scale = .3
@@ -70,10 +88,13 @@ func _on_Accept_pressed():
 			Global.car_maker.projectile_deco_color.append(line.default_color)
 			Global.car_maker.projectile_deco_width.append(line.width)
 			
-		Global.car_maker.state = CarMaker.States.DONE
 		
 		match Global.design_mode:
 			Global.DESIGN_MODE.INITIAL:
+				Global.terrain_difficulty = 5
+				Global.terrain_length = 5000
+				Global.shooting_enabled = true
+				Global.car_maker.state = CarMaker.States.MUSIC
 				get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 			Global.DESIGN_MODE.GALLERY:
 				Global.car_makers.append(Global.car_maker)

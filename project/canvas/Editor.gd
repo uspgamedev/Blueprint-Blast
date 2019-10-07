@@ -19,27 +19,47 @@ func _on_Accept_pressed():
 		canvas.drawing_scale = .5
 		Global.car_maker.convex_hull = canvas.get_convex_hull()
 		Global.car_maker.outline = canvas.get_line()
+		Global.car_maker.chassis_outline = canvas.get_line()
 		Global.car_maker.chassis_line_points = canvas.get_scaled_line().points
 		
-		Global.car_maker.state = CarMaker.States.CHASSIS_DECO
-		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+			Global.car_maker.state = CarMaker.States.CHASSIS_DECO
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		else:
+			Global.car_maker.state = CarMaker.States.LEFT_WHEEL
+			get_tree().change_scene("res://canvas/Editor.tscn")
 	elif Global.car_maker.state == CarMaker.States.LEFT_WHEEL:
 		canvas.drawing_scale = .3
 		Global.car_maker.outline = canvas.get_line()
+		Global.car_maker.left_wheel_outline = canvas.get_line()
 		Global.car_maker.left_wheel_hull = canvas.get_convex_hull()
 		Global.car_maker.left_wheel_line_points = canvas.get_scaled_line().points
 		
-		Global.car_maker.state = CarMaker.States.LEFT_WHEEL_DECO
-		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		
+		if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+			Global.car_maker.state = CarMaker.States.LEFT_WHEEL_DECO
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		else:
+			Global.car_maker.state = CarMaker.States.RIGHT_WHEEL
+			get_tree().change_scene("res://canvas/Editor.tscn")
 	
 	elif Global.car_maker.state == CarMaker.States.RIGHT_WHEEL:
 		canvas.drawing_scale = .3
 		Global.car_maker.outline = canvas.get_line()
+		Global.car_maker.right_wheel_outline = canvas.get_line()
 		Global.car_maker.right_wheel_hull = canvas.get_convex_hull()
 		Global.car_maker.right_wheel_line_points = canvas.get_scaled_line().points
 		
-		Global.car_maker.state = CarMaker.States.RIGHT_WHEEL_DECO
-		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+			Global.car_maker.state = CarMaker.States.RIGHT_WHEEL_DECO
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		else:
+			Global.car_maker.state = CarMaker.States.CHASSIS_DECO
+			Global.terrain_difficulty = 1
+			Global.terrain_length = 3000
+			Global.shooting_enabled = false
+			Global.car_maker.outline = Global.car_maker.chassis_outline
+			get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 	
 	elif Global.car_maker.state == CarMaker.States.PROJECTILE:
 		canvas.drawing_scale = .2
