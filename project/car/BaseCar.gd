@@ -27,6 +27,10 @@ onready var back_wheel = get_node("BackWheel/SpinningBody")
 onready var motor_sfx : AudioStreamPlayer2D = $MotorSFX
 
 func _ready():
+	if not Global.shooting_enabled:
+		$UI/HP.hide()
+	else:
+		$UI/HP.show()
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
 	$NitroCooldown.wait_time = NITRO_COOLDOWN
