@@ -19,6 +19,9 @@ func _ready():
 func _on_car_clicked(index):
 	Global.car_maker = Global.car_makers[index]
 	Global.car_maker.state = CarMaker.States.GALLERY
+	Global.terrain_difficulty = 8
+	Global.terrain_length = 10000
+	Global.shooting_enabled = true
 	get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 
 func _on_AddButton_pressed():
