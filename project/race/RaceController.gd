@@ -9,6 +9,7 @@ func _ready():
 	elif $Instructions:
 		$Instructions.hide()
 
+
 func _on_SemaphoreTimer_timeout():
 	semaphore_counter += 1
 	match semaphore_counter:
@@ -24,25 +25,33 @@ func _on_SemaphoreTimer_timeout():
 		7:
 			$HUD/Semaphore.hide()
 
+
 func _on_GoalArea2D_area_entered(area):
 	var car = area.get_parent()
 	if car is BaseCar:
 		Global.add_winner(car)
 		if car is PlayerCar:
-			yield(get_tree().create_timer(1), "timeout")
-			Global.race_state = Global.RACE_STATE.START
-			Global.car_refs.clear()
-			Global.winners.clear()
-			match Global.car_maker.state:
-				CarMaker.States.CHASSIS_DECO:
-					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
-				CarMaker.States.CANNON:
-					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
-				CarMaker.States.MUSIC:
-					get_tree().change_scene("res://music/Piano.tscn")
-				CarMaker.States.GALLERY:
-					if Global.add_player_car:
-						Global.add_player_car = false
-						Global.car_makers.append(Global.car_maker)
-					get_tree().change_scene("res://canvas/Gallery.tscn")
+			end_race(car.position)
 
+
+func end_race(player_position):
+	Engine.time_scale = .2
+	var wait_time = 3 * Engine.time_scale
+	yield(get_tree().create_timer(wait_time), "timeout")
+	Engine.time_scale = 1
+	
+	Global.race_state = Global.RACE_STATE.START
+	Global.car_refs.clear()
+	Global.winners.clear()
+	match Global.car_maker.state:
+		CarMaker.States.CHASSIS_DECO:
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		CarMaker.States.CANNON:
+			get_tree().change_scene("res://canvas/DecorationEditor.tscn")
+		CarMaker.States.MUSIC:
+			get_tree().change_scene("res://music/Piano.tscn")
+		CarMaker.States.GALLERY:
+			if Global.add_player_car:
+				Global.add_player_car = false
+				Global.car_makers.append(Global.car_maker)
+			get_tree().change_scene("res://canvas/Gallery.tscn")
