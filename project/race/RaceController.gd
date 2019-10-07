@@ -3,7 +3,11 @@ extends Node
 var semaphore_counter := 0
 
 func _ready():
-	pass
+	if Global.race_instructions and $Instructions:
+		$Instructions.show()
+		$Instructions/Label.text = Global.race_instructions
+	elif $Instructions:
+		$Instructions.hide()
 
 func _on_SemaphoreTimer_timeout():
 	semaphore_counter += 1

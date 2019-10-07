@@ -21,4 +21,5 @@ func button_down():
 		Global.shooting_enabled = true
 		Global.car_maker.state = Global.car_maker.States.GALLERY
 		Global.add_player_car = true
+		Global.race_instructions = null
 		get_tree().change_scene("res://test/TestRaceWithAI.tscn")

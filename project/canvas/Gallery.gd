@@ -22,6 +22,7 @@ func _on_car_clicked(index):
 	Global.terrain_difficulty = 8
 	Global.terrain_length = 10000
 	Global.shooting_enabled = true
+	Global.race_instructions = null
 	get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 
 func _on_AddButton_pressed():
