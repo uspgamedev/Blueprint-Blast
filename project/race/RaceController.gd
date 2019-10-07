@@ -14,12 +14,16 @@ func _on_SemaphoreTimer_timeout():
 	match semaphore_counter:
 		2:
 			show_semaphore($HUD/Semaphore/light1, Color.red)
+			$HUD/Semaphore/RedBeep.play()
 		3: 
 			show_semaphore($HUD/Semaphore/light2, Color.red)
+			$HUD/Semaphore/RedBeep.play()
 		4:
 			show_semaphore($HUD/Semaphore/light3, Color.red)
+			$HUD/Semaphore/RedBeep.play()
 		5:
 			show_semaphore($HUD/Semaphore/light4, Color.green)
+			$HUD/Semaphore/GreenBeep.play()
 			Global.race_state = Global.RACE_STATE.RACE
 		7:
 			hide_semaphore($HUD/Semaphore/light1, 0)
