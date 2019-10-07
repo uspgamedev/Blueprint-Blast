@@ -50,3 +50,9 @@ func update_movement_with_wheels():
 		force += Vector2(0, -1).rotated(global_rotation)
 	back_wheel.applied_force = -force * ROTATION_FORCE
 	front_wheel.applied_force = force * ROTATION_FORCE
+	
+	$NitroParticles.emitting = false
+	applied_force = Vector2()
+	if Input.is_action_pressed("nitro"):
+		$NitroParticles.emitting = true
+		applied_force = Vector2(2000, 0).rotated(rotation)
