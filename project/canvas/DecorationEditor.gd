@@ -68,6 +68,7 @@ func _on_Accept_pressed():
 			Global.terrain_difficulty = 3
 			Global.terrain_length = 4000
 			Global.shooting_enabled = false
+			Global.race_instructions = "Nitro: Shift"
 			get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 		
 	elif Global.car_maker.state == CarMaker.States.CANNON:
@@ -94,6 +95,7 @@ func _on_Accept_pressed():
 				Global.terrain_length = 5000
 				Global.shooting_enabled = true
 				Global.car_maker.state = CarMaker.States.MUSIC
+				Global.race_instructions = "Shoot: SpaceBar"
 				get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 			Global.DESIGN_MODE.GALLERY:
 				Global.car_makers.append(Global.car_maker)
