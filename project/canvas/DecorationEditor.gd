@@ -21,29 +21,33 @@ func _on_Clear_pressed():
 
 
 func _on_Accept_pressed():
+	print(canvas.lines.size())
 	if Global.car_maker.state == CarMaker.States.CHASSIS_DECO:
 		canvas.drawing_scale = .5
-		Global.car_maker.chassis_deco = canvas.get_scaled_lines()
-		for line in Global.car_maker.chassis_deco:
-			line.position -= canvas.rect_size / 2
+		for line in canvas.get_scaled_lines():
+			Global.car_maker.chassis_deco.append(line.points)
+			Global.car_maker.chassis_deco_color.append(line.default_color)
+			Global.car_maker.chassis_deco_width.append(line.width)
 			
 		Global.car_maker.state = CarMaker.States.LEFT_WHEEL
 		get_tree().change_scene("res://canvas/Editor.tscn")
 		
 	elif Global.car_maker.state == CarMaker.States.LEFT_WHEEL_DECO:
 		canvas.drawing_scale = .3
-		Global.car_maker.left_wheel_deco = canvas.get_scaled_lines()
-		for line in Global.car_maker.left_wheel_deco:
-			line.position -= canvas.rect_size / 2
+		for line in canvas.get_scaled_lines():
+			Global.car_maker.left_wheel_deco.append(line.points)
+			Global.car_maker.left_wheel_deco_color.append(line.default_color)
+			Global.car_maker.left_wheel_deco_width.append(line.width)
 		
 		Global.car_maker.state = CarMaker.States.RIGHT_WHEEL
 		get_tree().change_scene("res://canvas/Editor.tscn")
 	
 	elif Global.car_maker.state == CarMaker.States.RIGHT_WHEEL_DECO:
 		canvas.drawing_scale = .3
-		Global.car_maker.right_wheel_deco = canvas.get_scaled_lines()
-		for line in Global.car_maker.right_wheel_deco:
-			line.position -= canvas.rect_size / 2
+		for line in canvas.get_scaled_lines():
+			Global.car_maker.right_wheel_deco.append(line.points)
+			Global.car_maker.right_wheel_deco_color.append(line.default_color)
+			Global.car_maker.right_wheel_deco_width.append(line.width)
 		
 		Global.car_maker.outline = null
 		Global.car_maker.state = CarMaker.States.CANNON
@@ -51,21 +55,39 @@ func _on_Accept_pressed():
 		
 	elif Global.car_maker.state == CarMaker.States.CANNON:
 		canvas.drawing_scale = .3
-		Global.car_maker.cannon = canvas.get_scaled_lines()
-		for line in Global.car_maker.cannon:
-			line.position -= canvas.rect_size / 2
+		for line in canvas.get_scaled_lines():
+			Global.car_maker.cannon_deco.append(line.points)
+			Global.car_maker.cannon_color.append(line.default_color)
+			Global.car_maker.cannon_width.append(line.width)
 			
 		Global.car_maker.state = CarMaker.States.PROJECTILE
 		get_tree().change_scene("res://canvas/Editor.tscn")
 	
 	elif Global.car_maker.state == CarMaker.States.PROJECTILE_DECO:
 		canvas.drawing_scale = .3
-		Global.car_maker.projectile_deco = canvas.get_scaled_lines()
-		for line in Global.car_maker.projectile_deco:
-			line.position -= canvas.rect_size / 2
+		for line in canvas.get_scaled_lines():
+			Global.car_maker.projectile_deco.append(line.points)
+			Global.car_maker.projectile_deco_color.append(line.default_color)
+			Global.car_maker.projectile_deco_width.append(line.width)
 			
 		Global.car_maker.state = CarMaker.States.DONE
-		get_tree().change_scene("res://test/TestRaceWithAI.tscn")
+		
+		match Global.design_mode:
+			Global.DESIGN_MODE.INITIAL:
+				get_tree().change_scene("res://test/TestRaceWithAI.tscn")
+			Global.DESIGN_MODE.GALLERY:
+				Global.car_makers.append(Global.car_maker)
+				
+				var save_game = File.new()
+				save_game.open("user://" + str(OS.get_unix_time()) + ".car", File.WRITE)
+				for attribute in Global.car_maker.get_property_list():
+					if Global.car_maker.get(attribute.name):
+						save_game.store_line(attribute.name)
+						save_game.store_line(str(Global.car_maker.get(attribute.name)))
+				save_game.close()
+				
+				Global.car_maker = CarMaker.new()
+				get_tree().change_scene("res://canvas/Gallery.tscn")
 
 func _on_ColorPicker_color_changed(color):
 	canvas.change_color(color)

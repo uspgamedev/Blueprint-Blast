@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 196.684, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.18851, 161.016 )
+
+[node name="CarRepresentation" type="MarginContainer"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 400, 400 )
+
+[node name="CarPosition" type="Node2D" parent="."]
+position = Vector2( 193.99, 18.5608 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 202.204, 318.349 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -196.259, -169.946 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 195.125, -170.577 )
+shape = SubResource( 2 )

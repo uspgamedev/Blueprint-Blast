@@ -135,6 +135,7 @@ margin_bottom = 144.866
 min_value = 60.0
 max_value = 180.0
 value = 60.0
+ticks_on_borders = false
 script = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="HSlider"]

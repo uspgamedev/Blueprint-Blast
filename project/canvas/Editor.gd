@@ -14,12 +14,12 @@ func _on_Clear_pressed():
 
 
 func _on_Accept_pressed():
+	Global.canvas_offset = canvas.rect_size / 2
 	if Global.car_maker.state == CarMaker.States.CHASSIS:
 		canvas.drawing_scale = .5
 		Global.car_maker.convex_hull = canvas.get_convex_hull()
 		Global.car_maker.outline = canvas.get_line()
-		Global.car_maker.chassis_line = canvas.get_scaled_line()
-		Global.car_maker.chassis_line.position -= canvas.rect_size / 2
+		Global.car_maker.chassis_line_points = canvas.get_scaled_line().points
 		
 		Global.car_maker.state = CarMaker.States.CHASSIS_DECO
 		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
@@ -27,8 +27,7 @@ func _on_Accept_pressed():
 		canvas.drawing_scale = .3
 		Global.car_maker.outline = canvas.get_line()
 		Global.car_maker.left_wheel_hull = canvas.get_convex_hull()
-		Global.car_maker.left_wheel_line = canvas.get_scaled_line()
-		Global.car_maker.left_wheel_line.position -= canvas.rect_size / 2
+		Global.car_maker.left_wheel_line_points = canvas.get_scaled_line().points
 		
 		Global.car_maker.state = CarMaker.States.LEFT_WHEEL_DECO
 		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
@@ -37,8 +36,7 @@ func _on_Accept_pressed():
 		canvas.drawing_scale = .3
 		Global.car_maker.outline = canvas.get_line()
 		Global.car_maker.right_wheel_hull = canvas.get_convex_hull()
-		Global.car_maker.right_wheel_line = canvas.get_scaled_line()
-		Global.car_maker.right_wheel_line.position -= canvas.rect_size / 2
+		Global.car_maker.right_wheel_line_points = canvas.get_scaled_line().points
 		
 		Global.car_maker.state = CarMaker.States.RIGHT_WHEEL_DECO
 		get_tree().change_scene("res://canvas/DecorationEditor.tscn")
@@ -47,8 +45,7 @@ func _on_Accept_pressed():
 		canvas.drawing_scale = .2
 		Global.car_maker.projectile_hull = canvas.get_convex_hull()
 		Global.car_maker.outline = canvas.get_line()
-		Global.car_maker.projectile_line = canvas.get_scaled_line()
-		Global.car_maker.projectile_line.position -= canvas.rect_size / 2
+		Global.car_maker.projectile_line_points = canvas.get_scaled_line().points
 		
 		Global.car_maker.state = CarMaker.States.PROJECTILE_DECO
 		get_tree().change_scene("res://canvas/DecorationEditor.tscn")

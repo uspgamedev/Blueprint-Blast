@@ -19,19 +19,70 @@ const STATES_IMAGES = [
 
 var convex_hull : PoolVector2Array
 var left_wheel_hull : PoolVector2Array
-var left_wheel_line : Line2D
+var left_wheel_line_points : PoolVector2Array
 var left_wheel_deco : Array
+var left_wheel_deco_color : Array
+var left_wheel_deco_width : Array
 var right_wheel_hull : PoolVector2Array
-var right_wheel_line : Line2D
+var right_wheel_line_points : PoolVector2Array
 var right_wheel_deco : Array
+var right_wheel_deco_color : Array
+var right_wheel_deco_width : Array
 var outline : Line2D
-var chassis_line : Line2D
+var chassis_line_points : PoolVector2Array
 var chassis_deco : Array
-var cannon : Array
+var chassis_deco_color : Array
+var chassis_deco_width : Array
+var cannon_deco : Array
+var cannon_color : Array
+var cannon_width : Array
 var projectile_hull : PoolVector2Array
-var projectile_line : Line2D
+var projectile_line_points : PoolVector2Array
 var projectile_deco : Array
+var projectile_deco_color : Array
+var projectile_deco_width : Array
 var state = States.CHASSIS
 
+func _init():
+	# Weird fix because godot starts using the same array for all objects
+	cannon_deco = []
+	cannon_color = []
+	cannon_width = []
+	left_wheel_deco = []
+	left_wheel_deco_color = []
+	left_wheel_deco_width = []
+	right_wheel_deco = []
+	right_wheel_deco_color = []
+	right_wheel_deco_width = []
+	chassis_deco = []
+	chassis_deco_color = []
+	chassis_deco_width = []
+	projectile_deco = []
+	projectile_deco_color = []
+	projectile_deco_width = []
+	
+func load_from_string(file : File):
+	state = States.DONE
+	var index = 1
 
+	while not file.eof_reached():
+		var name = file.get_line()
+		var value = file.get_line()
+		var type = typeof(self.get(name))
+		print_debug("name: ", name)
+		print_debug("value: ", value)
+		match type:
+			TYPE_VECTOR2_ARRAY:
+				self.set(name, StringPoolConverter.string_to_pool_array(value))
+			TYPE_ARRAY:
+				if name.ends_with("_color"):
+					self.set(name, StringPoolConverter.string_to_color_array(value))
+				elif name.ends_with("_width"):
+					self.set(name, StringPoolConverter.string_to_float_array(value))
+				elif name.ends_with("_deco"):
+					self.set(name, StringPoolConverter.string_to_vector2_array_array(value))
 
+			
+		index += 2
+	
+	print(self)
