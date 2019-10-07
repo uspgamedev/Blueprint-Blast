@@ -4,7 +4,10 @@ onready var canvas = $HBoxContainer2/DecorationCanvas
 var scale = 1
 
 func _ready():
-	$Label.text = CarMaker.STATES_NAME[Global.car_maker.state]
+	if Global.design_mode == Global.DESIGN_MODE.GALLERY:
+		$Label.text = CarMaker.STATES_NAME[Global.car_maker.state]
+	else:
+		$Label.text = CarMaker.STORY_NAME[Global.car_maker.state]
 	canvas.get_node("Outline").texture = load(CarMaker.STATES_IMAGES[Global.car_maker.state])
 	canvas.get_node("Outline").rect_position -= canvas.get_node("Outline").texture.get_size() * scale /2
 	canvas.get_node("Outline").rect_scale *= scale

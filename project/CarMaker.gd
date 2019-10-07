@@ -11,6 +11,13 @@ const STATES_NAME = [
 	"Right Wheel", "Right Wheel Decoration",
 	"Cannon", "Projectile", "Projectile Decoration", "Music"
 ]
+
+const STORY_NAME = [
+	"Lets draw a car", "This car is boring, lets pimp it up", "We need a wheel", "Pimp that wheel",
+	"pretty sure cars need two wheels", "That other one too",
+	"Lets get explosive, draw a cannon", "We'll need a projectile to shoot", "Make it DANGEROUS", "Music"
+]
+
 const STATES_IMAGES = [
 	"res://assets/carro.png", "res://assets/carro.png", "res://assets/roda.png",
 	"res://assets/roda.png", "res://assets/roda.png", "res://assets/roda.png",
