@@ -3,7 +3,7 @@ extends Node
 var semaphore_counter := 0
 
 func _ready():
-	if Global.race_instructions and $Instructions:
+	if Global.race_instructions and has_node("Instructions"):
 		$Instructions.show()
 		$Instructions/Label.text = Global.race_instructions
 	elif $Instructions:
@@ -14,16 +14,38 @@ func _on_SemaphoreTimer_timeout():
 	semaphore_counter += 1
 	match semaphore_counter:
 		2:
-			$HUD/Semaphore/light1.modulate = Color.red
+			show_semaphore($HUD/Semaphore/light1, Color.red)
 		3: 
-			$HUD/Semaphore/light2.modulate = Color.red
+			show_semaphore($HUD/Semaphore/light2, Color.red)
 		4:
-			$HUD/Semaphore/light3.modulate = Color.red
+			show_semaphore($HUD/Semaphore/light3, Color.red)
 		5:
-			$HUD/Semaphore/light4.modulate = Color.green
+			show_semaphore($HUD/Semaphore/light4, Color.green)
 			Global.race_state = Global.RACE_STATE.RACE
 		7:
-			$HUD/Semaphore.hide()
+			hide_semaphore($HUD/Semaphore/light1, 0)
+			hide_semaphore($HUD/Semaphore/light2, .08)
+			hide_semaphore($HUD/Semaphore/light3, .16)
+			hide_semaphore($HUD/Semaphore/light4, .24)
+
+func show_semaphore(sema, color):
+	sema.modulate = color
+	var tween = Tween.new()
+	add_child(tween)
+	tween.interpolate_property(sema, "rect_position:y", null, sema.rect_position.y + 100, .5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+	tween.start()
+	yield(tween, "tween_completed")
+	tween.queue_free()
+
+func hide_semaphore(sema, delay):
+	yield(get_tree().create_timer(delay), "timeout")
+	var tween = Tween.new()
+	add_child(tween)
+	tween.interpolate_property(sema, "rect_position:y", null, sema.rect_position.y - 100, .5, Tween.TRANS_CUBIC, Tween.EASE_IN)
+	tween.start()
+	yield(tween, "tween_completed")
+	tween.queue_free()
+
 
 
 func _on_GoalArea2D_area_entered(area):
