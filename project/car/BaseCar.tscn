@@ -1,13 +1,33 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://car/BaseCar.gd" type="Script" id=1]
 [ext_resource path="res://assets/hp-bar.png" type="Texture" id=2]
 [ext_resource path="res://car/WheelWithDull.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sphere.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 104.961, 71.6538 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.0954545, 0.152273, 0.268182, 1 )
+colors = PoolColorArray( 1, 0.855469, 0, 1, 1, 0.862745, 0.054902, 0, 0.67451, 0.67451, 0.67451, 0, 0.705882, 0.705882, 0.705882, 1, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+spread = 2.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+scale_random = 0.15
+color_ramp = SubResource( 5 )
 
 [node name="BaseCar" type="RigidBody2D"]
 collision_mask = 6
@@ -50,3 +70,12 @@ visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="NitroParticles" type="Particles2D" parent="."]
+position = Vector2( -84.2441, -2.5094 )
+rotation = -3.14323
+emitting = false
+amount = 100
+local_coords = false
+process_material = SubResource( 3 )
+texture = ExtResource( 4 )
