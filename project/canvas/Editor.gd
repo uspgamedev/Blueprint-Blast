@@ -17,6 +17,8 @@ func _on_Clear_pressed():
 
 
 func _on_Accept_pressed():
+	if canvas.get_line().points.size() <= 1:
+		return
 	Global.canvas_offset = canvas.rect_size / 2
 	if Global.car_maker.state == CarMaker.States.CHASSIS:
 		canvas.drawing_scale = .5
