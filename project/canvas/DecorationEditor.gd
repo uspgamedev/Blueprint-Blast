@@ -69,7 +69,7 @@ func _on_Accept_pressed():
 		else:
 			Global.car_maker.state = CarMaker.States.CANNON
 			Global.terrain_difficulty = 3
-			Global.terrain_length = 4000
+			Global.terrain_length = 5500
 			Global.shooting_enabled = false
 			Global.nitro_enabled = true
 			Global.race_instructions = "Nitro: Shift"
@@ -96,7 +96,7 @@ func _on_Accept_pressed():
 		match Global.design_mode:
 			Global.DESIGN_MODE.INITIAL:
 				Global.terrain_difficulty = 5
-				Global.terrain_length = 5000
+				Global.terrain_length = 6500
 				Global.shooting_enabled = true
 				Global.nitro_enabled = true
 				Global.car_maker.state = CarMaker.States.MUSIC
