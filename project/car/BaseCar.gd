@@ -38,7 +38,7 @@ func update_wheel_acceleration():
 
 func update_hp(value):
 	hp = value
-	$HP.value = lerp(0, 100, value/max_hp)
+	$UI/HP.value = lerp(0, 100, value/max_hp)
 
 func shoot(bullet_info, pos):
 	if Global.race_state == Global.RACE_STATE.RACE and Global.shooting_enabled:
@@ -110,6 +110,9 @@ func apply_invincibility():
 
 	tween.queue_free()
 	invincible = false
+
+func _process(delta):
+	$UI.global_rotation = 0
 
 
 func apply_damage(damage : float):
