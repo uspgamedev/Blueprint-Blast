@@ -1,38 +1,75 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://music/Piano.gd" type="Script" id=1]
-[ext_resource path="res://music/Button.gd" type="Script" id=2]
-[ext_resource path="res://assets/A.png" type="Texture" id=3]
-[ext_resource path="res://assets/B.png" type="Texture" id=4]
-[ext_resource path="res://assets/C.png" type="Texture" id=5]
-[ext_resource path="res://assets/D.png" type="Texture" id=6]
-[ext_resource path="res://assets/E.png" type="Texture" id=7]
-[ext_resource path="res://assets/F.png" type="Texture" id=8]
-[ext_resource path="res://assets/G.png" type="Texture" id=9]
-[ext_resource path="res://music/RecordButton.gd" type="Script" id=10]
-[ext_resource path="res://music/FinishButton.gd" type="Script" id=11]
-[ext_resource path="res://music/MusicMaker.tscn" type="PackedScene" id=12]
-[ext_resource path="res://music/HSlider.gd" type="Script" id=13]
-[ext_resource path="res://assets/metronome.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/bptex.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/editor-title-font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/fonts/music-button.tres" type="DynamicFont" id=4]
+[ext_resource path="res://music/Button.gd" type="Script" id=5]
+[ext_resource path="res://assets/A.png" type="Texture" id=6]
+[ext_resource path="res://assets/B.png" type="Texture" id=7]
+[ext_resource path="res://assets/C.png" type="Texture" id=8]
+[ext_resource path="res://assets/D.png" type="Texture" id=9]
+[ext_resource path="res://assets/E.png" type="Texture" id=10]
+[ext_resource path="res://assets/F.png" type="Texture" id=11]
+[ext_resource path="res://assets/G.png" type="Texture" id=12]
+[ext_resource path="res://music/RecordButton.gd" type="Script" id=13]
+[ext_resource path="res://music/FinishButton.gd" type="Script" id=14]
+[ext_resource path="res://music/MusicMaker.tscn" type="PackedScene" id=15]
+[ext_resource path="res://music/HSlider.gd" type="Script" id=16]
+[ext_resource path="res://assets/fonts/Flux Architect Regular.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://assets/metronome.ogg" type="AudioStream" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+outline_size = 2
+outline_color = Color( 0.176471, 0.176471, 0.176471, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 17 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+outline_size = 3
+outline_color = Color( 0.176471, 0.176471, 0.176471, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 17 )
 
 [node name="Piano" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -512.0
+margin_top = 10.0
+margin_right = 512.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 3 )
+text = "make some music"
+align = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -222.0
-margin_top = -226.5
-margin_right = 222.0
-margin_bottom = 226.5
-custom_constants/separation = 100
+margin_left = -214.078
+margin_top = -159.52
+margin_right = 229.922
+margin_bottom = 293.48
+custom_constants/separation = 60
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-editor/display_folded = true
 margin_right = 444.0
 margin_bottom = 120.0
 
@@ -40,119 +77,131 @@ margin_bottom = 120.0
 margin_right = 60.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "A"
-script = ExtResource( 2 )
-piano_image = ExtResource( 3 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 6 )
 
 [node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 64.0
 margin_right = 124.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "B"
-script = ExtResource( 2 )
-piano_image = ExtResource( 4 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 7 )
 
 [node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 128.0
 margin_right = 188.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "C"
-script = ExtResource( 2 )
-piano_image = ExtResource( 5 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 8 )
 
 [node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 192.0
 margin_right = 252.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "D"
-script = ExtResource( 2 )
-piano_image = ExtResource( 6 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 9 )
 
 [node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 256.0
 margin_right = 316.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "E"
-script = ExtResource( 2 )
-piano_image = ExtResource( 7 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 10 )
 
 [node name="Button6" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 320.0
 margin_right = 380.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "F"
-script = ExtResource( 2 )
-piano_image = ExtResource( 8 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 11 )
 
 [node name="Button7" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 384.0
 margin_right = 444.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 60, 120 )
+custom_fonts/font = ExtResource( 4 )
 text = "G"
-script = ExtResource( 2 )
-piano_image = ExtResource( 9 )
+script = ExtResource( 5 )
+piano_image = ExtResource( 12 )
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-margin_top = 220.0
+margin_top = 180.0
 margin_right = 444.0
-margin_bottom = 426.0
+margin_bottom = 386.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource( 3 )
+texture = ExtResource( 6 )
 stretch_mode = 4
 
 [node name="RecordButton" type="Button" parent="."]
-margin_left = 91.504
-margin_top = 367.649
-margin_right = 244.504
-margin_bottom = 443.649
+margin_left = 30.0
+margin_top = 400.0
+margin_right = 253.0
+margin_bottom = 476.0
+custom_fonts/font = ExtResource( 4 )
 text = "Record Base Track"
-script = ExtResource( 10 )
+script = ExtResource( 13 )
 
 [node name="FinishButton" type="Button" parent="."]
-margin_left = 747.203
-margin_top = 367.649
-margin_right = 900.203
-margin_bottom = 443.649
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -220.0
+margin_top = 100.0
+margin_right = -30.0
+margin_bottom = 176.0
+custom_fonts/font = ExtResource( 4 )
 text = "Finish Base Track"
-script = ExtResource( 11 )
+script = ExtResource( 14 )
 
-[node name="BaseMusicMaker" parent="." instance=ExtResource( 12 )]
+[node name="BaseMusicMaker" parent="." instance=ExtResource( 15 )]
 is_base = true
 
-[node name="MelodyMusicMaker" parent="." instance=ExtResource( 12 )]
+[node name="MelodyMusicMaker" parent="." instance=ExtResource( 15 )]
 
 [node name="HSlider" type="HSlider" parent="."]
-editor/display_folded = true
-margin_left = 791.737
-margin_top = 93.8657
-margin_right = 958.737
-margin_bottom = 144.866
+margin_left = 783.039
+margin_top = 161.954
+margin_right = 950.039
+margin_bottom = 212.954
 min_value = 60.0
 max_value = 180.0
 value = 60.0
-script = ExtResource( 13 )
+script = ExtResource( 16 )
 
 [node name="Label" type="Label" parent="HSlider"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -26.5
-margin_top = -31.5482
-margin_right = 26.5
-margin_bottom = -17.5482
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+margin_left = -35.5
+margin_top = -31.5481
+margin_right = 36.5
+margin_bottom = -15.5481
+custom_fonts/font = SubResource( 1 )
 text = "BPM: 60"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HSlider"]
-stream = ExtResource( 14 )
+stream = ExtResource( 18 )
 
 [node name="Button" type="Button" parent="HSlider"]
 anchor_left = 0.5
@@ -162,5 +211,15 @@ anchor_bottom = 0.5
 margin_left = -49.5
 margin_top = 23.5292
 margin_right = 49.5
-margin_bottom = 43.5292
+margin_bottom = 63.5292
+custom_fonts/font = ExtResource( 4 )
 text = "Start"
+
+[node name="Explanation" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+custom_fonts/font = SubResource( 2 )
+text = "Play with your keyboard number keys"
+align = 1
