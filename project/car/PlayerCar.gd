@@ -14,11 +14,9 @@ func _ready():
 	var main = get_parent()
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
-	if main.get("car_refs"):
-		main.car_refs.append(self)
-		
+	
 	load_car_maker(Global.car_maker)
-		
+	
 	max_hp = area * AREA_TO_HP
 	update_hp(max_hp)
 	acceleration *= lerp(MAX_ACC_FACTOR, MIN_ACC_FACTOR, area / MAX_DRAW_AREA)

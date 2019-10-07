@@ -3,7 +3,7 @@ extends Node
 var semaphore_counter := 0
 
 func _ready():
-	Global.car_refs = []
+	pass
 
 func _on_SemaphoreTimer_timeout():
 	semaphore_counter += 1
