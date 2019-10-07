@@ -19,4 +19,5 @@ func button_down():
 		Global.terrain_difficulty = 8
 		Global.terrain_length = 8000
 		Global.shooting_enabled = true
+		Global.car_maker.state = Global.car_maker.States.GALLERY
 		get_tree().change_scene("res://test/TestRaceWithAI.tscn")

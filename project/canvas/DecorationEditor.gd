@@ -21,7 +21,6 @@ func _on_Clear_pressed():
 
 
 func _on_Accept_pressed():
-	print(canvas.lines.size())
 	if Global.car_maker.state == CarMaker.States.CHASSIS_DECO:
 		canvas.drawing_scale = .5
 		for line in canvas.get_scaled_lines():

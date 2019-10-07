@@ -13,13 +13,13 @@ anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_right = 1920.0
+margin_right = 1024.0
 margin_bottom = 14.0
 text = "CARS"
 
 [node name="Cars" type="ScrollContainer" parent="VBoxContainer"]
 margin_top = 18.0
-margin_right = 1920.0
+margin_right = 1024.0
 margin_bottom = 1099.43
 rect_min_size = Vector2( 0, 1081.43 )
 scroll_horizontal_enabled = false

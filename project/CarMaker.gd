@@ -4,7 +4,7 @@ class_name CarMaker
 enum States {
 	CHASSIS, CHASSIS_DECO, LEFT_WHEEL, LEFT_WHEEL_DECO,
 	RIGHT_WHEEL, RIGHT_WHEEL_DECO, CANNON,
-	PROJECTILE, PROJECTILE_DECO, MUSIC}
+	PROJECTILE, PROJECTILE_DECO, MUSIC, GALLERY}
 
 const STATES_NAME = [
 	"Chassis", "Chassis Decoration", "Left Wheel", "Left Wheel Decoration",
@@ -86,5 +86,3 @@ func load_from_string(file : File):
 
 			
 		index += 2
-	
-	print(self)

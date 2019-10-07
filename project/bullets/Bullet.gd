@@ -26,17 +26,11 @@ func _ready():
 func _exit_tree():
 	var particles = $Particles2D
 	var particles_position = position
-	print(particles_position)
 	remove_child(particles)
 	get_parent().add_child(particles)
 	particles.emitting = false
 	particles.global_position = particles_position
-	print("_exit_tree")
 	
-func _process(delta):
-	print(global_position)
-	print(position)
-
 func explode():
 	for car in Global.car_refs:
 		var vector : Vector2 = car.global_position - global_position

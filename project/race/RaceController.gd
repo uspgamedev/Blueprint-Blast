@@ -36,4 +36,6 @@ func _on_GoalArea2D_area_entered(area):
 					get_tree().change_scene("res://canvas/DecorationEditor.tscn")
 				CarMaker.States.MUSIC:
 					get_tree().change_scene("res://music/Piano.tscn")
+				CarMaker.States.GALLERY:
+					get_tree().change_scene("res://canvas/Gallery.tscn")
 
