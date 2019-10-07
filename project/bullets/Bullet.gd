@@ -31,6 +31,10 @@ func _exit_tree():
 	particles.emitting = false
 	particles.global_position = particles_position
 	
+	var explosion = load("res://bullets/Explosion.tscn").instance()
+	explosion.position = position
+	get_parent().add_child(explosion)
+	
 func explode():
 	for car in Global.car_refs:
 		var vector : Vector2 = car.global_position - global_position
