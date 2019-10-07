@@ -10,14 +10,14 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 104.961, 71.6538 )
 
-[sub_resource type="Gradient" id=4]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.0954545, 0.152273, 0.268182, 1 )
 colors = PoolColorArray( 1, 0.855469, 0, 1, 1, 0.862745, 0.054902, 0, 0.67451, 0.67451, 0.67451, 0, 0.705882, 0.705882, 0.705882, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=5]
-gradient = SubResource( 4 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 spread = 2.0
 gravity = Vector3( 0, 98, 0 )
@@ -27,7 +27,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.3
 scale_random = 0.15
-color_ramp = SubResource( 5 )
+color_ramp = SubResource( 4 )
 
 [node name="BaseCar" type="RigidBody2D"]
 collision_mask = 6
@@ -77,5 +77,5 @@ rotation = -3.14323
 emitting = false
 amount = 100
 local_coords = false
-process_material = SubResource( 3 )
+process_material = SubResource( 5 )
 texture = ExtResource( 4 )
