@@ -102,3 +102,6 @@ texture = ExtResource( 4 )
 [node name="MotorSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.0
+
+[node name="NitroCooldown" type="Timer" parent="."]
+one_shot = true

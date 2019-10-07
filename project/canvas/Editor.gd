@@ -62,6 +62,7 @@ func _on_Accept_pressed():
 			Global.terrain_length = 3000
 			Global.shooting_enabled = false
 			Global.car_maker.outline = Global.car_maker.chassis_outline
+			Global.nitro_enabled = false
 			Global.race_instructions = "Accelerate: D\nReverse: A\nRotate Car: W and S\nReset Car: R"
 			get_tree().change_scene("res://test/TestRaceWithAI.tscn")
 	

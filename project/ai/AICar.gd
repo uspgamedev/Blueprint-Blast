@@ -15,13 +15,24 @@ func _ready():
 		element.contact_monitor = true
 		element.contacts_reported = 1
 		
-	
+	$NitroCooldown.wait_time = 7
 	load_car_maker(Global.car_makers[randi() % Global.car_makers.size()])
 
 func _physics_process(delta):
 	update_movement()
 	handle_shooting()
 	check_crash(delta)
+	update_nitro()
+
+func update_nitro():
+	if Global.nitro_enabled and not $NitroParticles.emitting and $NitroCooldown.time_left == 0 and Global.race_state == Global.RACE_STATE.RACE:
+		$NitroParticles.emitting = true
+		applied_force = Vector2(2000, 0)
+		$UI/Nitro.value = $UI/Nitro.max_value
+		yield(get_tree().create_timer(NITRO_DURATION), "timeout")
+		$NitroParticles.emitting = false
+		applied_force = Vector2(0, 0)
+		$NitroCooldown.start()
 
 func update_movement():
 	go_forward()

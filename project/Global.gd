@@ -13,6 +13,7 @@ var winner_list_gui
 var terrain_difficulty := 8 # 1-8
 var terrain_length := 10000
 var shooting_enabled := true
+var nitro_enabled := true
 var canvas_offset : = Vector2(300, 238)
 var add_player_car := false
 var race_instructions = null

@@ -7,6 +7,8 @@ const RESET_OFFSET := 200
 const MAX_DRAW_AREA = 71400
 const MAX_ACC_FACTOR = 2.0
 const MIN_ACC_FACTOR = .5
+const NITRO_COOLDOWN = 5
+const NITRO_DURATION = 3
 
 var back_wheel_area
 var front_wheel_area
@@ -27,8 +29,17 @@ onready var motor_sfx : AudioStreamPlayer2D = $MotorSFX
 func _ready():
 	friction = 0.2
 	$BulletCooldown.wait_time = bullet_cooldown
+	$NitroCooldown.wait_time = NITRO_COOLDOWN
 	Global.car_refs.append(self)
 	update_wheel_acceleration()
+
+func _physics_process(delta):
+	update_nitro_cooldown()
+
+
+func update_nitro_cooldown():
+	if not $NitroParticles.emitting:
+		$UI/Nitro.value = $NitroCooldown.time_left/(NITRO_COOLDOWN) * $UI/Nitro.max_value
 
 func update_wheel_acceleration():
 	back_wheel_area = ConvexPolygonArea.get_convex_polygon_area(back_wheel.get_node("Polygon2D").polygon)

@@ -1,8 +1,6 @@
 extends BaseCar
 class_name PlayerCar
 
-const NITRO_COOLDOWN = 5
-const NITRO_DURATION = 3
 const AREA_TO_HP = .008
 const ROTATION_FORCE = 400
 
@@ -26,7 +24,6 @@ func _ready():
 	engine_start.pitch_scale = clamp(lerp(4, 1.5, area/25000), 1.5, 4)
 	motor_sfx.pitch_scale = original_pitch
 	original_volume = 0.67/(original_pitch * original_pitch) # Stevens's power law
-	$NitroCooldown.wait_time = NITRO_COOLDOWN
 	var tween = Tween.new()
 	add_child(tween)
 	tween.interpolate_property(motor_sfx, "volume_db", -80, -10, 2, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -37,11 +34,6 @@ func _ready():
 func _physics_process(delta):
 	update_movement_with_wheels()
 	handle_shooting()
-	update_nitro_cooldown()
-
-func update_nitro_cooldown():
-	if not $NitroParticles.emitting:
-		$UI/Nitro.value = $NitroCooldown.time_left/(NITRO_COOLDOWN) * $UI/Nitro.max_value
 
 func _unhandled_input(event):
 	if Global.race_state == Global.RACE_STATE.RACE:
@@ -81,7 +73,7 @@ func update_movement_with_wheels():
 	applied_force.rotated(rotation)
 
 func _input(event):
-	if not $NitroParticles.emitting and $NitroCooldown.time_left == 0 and event.is_action_pressed("nitro") and Global.race_state == Global.RACE_STATE.RACE:
+	if not $NitroParticles.emitting and $NitroCooldown.time_left == 0 and event.is_action_pressed("nitro") and Global.race_state == Global.RACE_STATE.RACE and Global.nitro_enabled:
 		$NitroParticles.emitting = true
 		applied_force = Vector2(2000, 0)
 		$UI/Nitro.value = $UI/Nitro.max_value

@@ -11,6 +11,3 @@ script = ExtResource( 2 )
 stream = ExtResource( 3 )
 volume_db = -10.0
 autoplay = true
-
-[node name="NitroCooldown" type="Timer" parent="." index="10"]
-one_shot = true
