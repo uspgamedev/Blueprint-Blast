@@ -40,9 +40,10 @@ The player drives the car by accelerating and braking, turn the inclination, and
 9. Draw Bullet
 10. Race
 11. Piano
-12. Draw prop
-13. Race
-14. GOTO 12
+12. Race
+13. Draw prop
+14. Race
+15. GOTO 13
 
 ## Draw parts
 
