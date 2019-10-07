@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://race/RaceController.gd" type="Script" id=1]
 [ext_resource path="res://test/Background.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://assets/sfxs/countdown-a.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/sfxs/countdown-b.ogg" type="AudioStream" id=14]
 [ext_resource path="res://race/WinnerListLabel.gd" type="Script" id=15]
+[ext_resource path="res://assets/sfxs/cheering.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/sfxs/boo.wav" type="AudioStream" id=17]
 
 [node name="RaceController" type="Node"]
 script = ExtResource( 1 )
@@ -111,5 +113,11 @@ margin_right = 227.761
 margin_bottom = 154.119
 rect_scale = Vector2( 3, 3 )
 script = ExtResource( 15 )
+
+[node name="CheerSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+
+[node name="BooSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
 [connection signal="area_entered" from="RaceTrack/GoalArea2D" to="." method="_on_GoalArea2D_area_entered"]
 [connection signal="timeout" from="SemaphoreTimer" to="." method="_on_SemaphoreTimer_timeout"]

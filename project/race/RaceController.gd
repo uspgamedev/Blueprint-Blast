@@ -58,15 +58,20 @@ func _on_GoalArea2D_area_entered(area):
 	if car is BaseCar:
 		Global.add_winner(car)
 		if car is PlayerCar:
-			end_race(car.position)
+			end_race(car.position, (Global.winners.size() == 1))
 
 
-func end_race(player_position):
+func end_race(player_position, player_won):
 	var confetti = load("res://race/Confetti.tscn").instance()
 	confetti.position.x = $RaceTrack/GoalArea2D.position.x
 	confetti.position.y = player_position.y
 	confetti.emitting = true
 	add_child(confetti)
+	
+	if player_won:
+		$CheerSFX.play()
+	else:
+		$BooSFX.play()
 	
 	Engine.time_scale = .2
 	var wait_time = 3 * Engine.time_scale
