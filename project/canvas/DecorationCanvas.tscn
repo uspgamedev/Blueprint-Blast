@@ -13,7 +13,7 @@ expand = true
 script = ExtResource( 2 )
 
 [node name="Texture" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.313726 )
+modulate = Color( 1, 1, 1, 0.117647 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 3 )

@@ -1,6 +1,6 @@
 extends Control
 
-onready var canvas = $VBoxContainer/HBoxContainer2/DecorationCanvas
+onready var canvas = $HBoxContainer2/DecorationCanvas
 var scale = 1
 
 func _ready():
@@ -109,10 +109,10 @@ func _on_Accept_pressed():
 				Global.car_maker = CarMaker.new()
 				get_tree().change_scene("res://canvas/Gallery.tscn")
 
+
 func _on_ColorPicker_color_changed(color):
 	canvas.change_color(color)
 
 
-func _on_HSlider_value_changed(value):
-	canvas.change_width(value)
-	$VBoxContainer/HBoxContainer2/VBoxContainer2/LineWidth.text = str("Line Width: ", value)
+func _on_ColorPicker_width_changed(width):
+	canvas.change_width(width)

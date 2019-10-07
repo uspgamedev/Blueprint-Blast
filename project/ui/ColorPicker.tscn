@@ -1,0 +1,149 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/ColorPicker.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Flux Architect Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/ui/grey_sliderDown.png" type="Texture" id=3]
+[ext_resource path="res://assets/ui/grey_sliderDownFocus.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="ColorPicker" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 200, 426 )
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 96.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 200, 0 )
+custom_constants/separation = 100
+
+[node name="ColorBox" type="VBoxContainer" parent="VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 247.0
+custom_constants/separation = 20
+
+[node name="Border" type="ColorRect" parent="VBoxContainer/ColorBox"]
+margin_right = 200.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/ColorBox/Border"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -20.0
+margin_right = 95.0
+margin_bottom = 20.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="RGBBox" type="VBoxContainer" parent="VBoxContainer/ColorBox"]
+margin_top = 70.0
+margin_right = 200.0
+margin_bottom = 247.0
+custom_constants/separation = 30
+
+[node name="RedBox" type="VBoxContainer" parent="VBoxContainer/ColorBox/RGBBox"]
+margin_right = 200.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorBox/RGBBox/RedBox"]
+margin_right = 200.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "Red: 0"
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/ColorBox/RGBBox/RedBox"]
+margin_top = 23.0
+margin_right = 200.0
+margin_bottom = 39.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 3 )
+max_value = 255.0
+
+[node name="GreenBox" type="VBoxContainer" parent="VBoxContainer/ColorBox/RGBBox"]
+margin_top = 69.0
+margin_right = 200.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorBox/RGBBox/GreenBox"]
+margin_right = 200.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "Green: 0"
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/ColorBox/RGBBox/GreenBox"]
+margin_top = 23.0
+margin_right = 200.0
+margin_bottom = 39.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 3 )
+max_value = 255.0
+
+[node name="BlueBox" type="VBoxContainer" parent="VBoxContainer/ColorBox/RGBBox"]
+margin_top = 138.0
+margin_right = 200.0
+margin_bottom = 177.0
+
+[node name="Label" type="Label" parent="VBoxContainer/ColorBox/RGBBox/BlueBox"]
+margin_right = 200.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "Blue: 0"
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/ColorBox/RGBBox/BlueBox"]
+margin_top = 23.0
+margin_right = 200.0
+margin_bottom = 39.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 3 )
+max_value = 255.0
+
+[node name="WidthBox" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 347.0
+margin_right = 200.0
+margin_bottom = 426.0
+custom_constants/separation = 10
+
+[node name="WidthCircle" type="Control" parent="VBoxContainer/WidthBox"]
+margin_right = 200.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="WidthSliderBox" type="VBoxContainer" parent="VBoxContainer/WidthBox"]
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 79.0
+
+[node name="Label" type="Label" parent="VBoxContainer/WidthBox/WidthSliderBox"]
+margin_right = 200.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 1 )
+text = "Width: 10"
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/WidthBox/WidthSliderBox"]
+margin_top = 23.0
+margin_right = 200.0
+margin_bottom = 39.0
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 4 )
+custom_icons/grabber = ExtResource( 3 )
+min_value = 1.0
+max_value = 30.0
+value = 10.0
+[connection signal="value_changed" from="VBoxContainer/ColorBox/RGBBox/RedBox/HSlider" to="." method="_on_RedSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ColorBox/RGBBox/GreenBox/HSlider" to="." method="_on_GreenSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ColorBox/RGBBox/BlueBox/HSlider" to="." method="_on_BlueSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/WidthBox/WidthSliderBox/HSlider" to="." method="_on_WidthSlider_value_changed"]
