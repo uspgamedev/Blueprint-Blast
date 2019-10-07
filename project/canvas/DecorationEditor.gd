@@ -105,13 +105,13 @@ func _on_Accept_pressed():
 			Global.DESIGN_MODE.GALLERY:
 				Global.car_makers.append(Global.car_maker)
 				
-				var save_game = File.new()
-				save_game.open("user://" + str(OS.get_unix_time()) + ".car", File.WRITE)
-				for attribute in Global.car_maker.get_property_list():
-					if Global.car_maker.get(attribute.name):
-						save_game.store_line(attribute.name)
-						save_game.store_line(str(Global.car_maker.get(attribute.name)))
-				save_game.close()
+#				var save_game = File.new()
+#				save_game.open("user://" + str(OS.get_unix_time()) + ".car", File.WRITE)
+#				for attribute in Global.car_maker.get_property_list():
+#					if Global.car_maker.get(attribute.name):
+#						save_game.store_line(attribute.name)
+#						save_game.store_line(str(Global.car_maker.get(attribute.name)))
+#				save_game.close()
 				
 				Global.car_maker = CarMaker.new()
 				get_tree().change_scene("res://canvas/Gallery.tscn")
