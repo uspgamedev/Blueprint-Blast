@@ -20,4 +20,5 @@ func button_down():
 		Global.terrain_length = 8000
 		Global.shooting_enabled = true
 		Global.car_maker.state = Global.car_maker.States.GALLERY
+		Global.add_player_car = true
 		get_tree().change_scene("res://test/TestRaceWithAI.tscn")
