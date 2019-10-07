@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://bullets/Explosion.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Luna.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/explosion.wav" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -112,3 +113,6 @@ autoplay = "boom"
 anims/boom = SubResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )

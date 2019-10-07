@@ -5,6 +5,8 @@ const onomatopoeias = ["BOOM!!", "KABOOM!!", "BANG!!", "POW!!", "BLAM!!",
 		"KAPOW!!", "BADABOOM!!", "PLOP!!"]
 
 func _ready():
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D.pitch_scale += randf()*4 - 2
 	randomize()
 	rotation_degrees = rand_range(-20, 20)
 	$Label.text = onomatopoeias[randi() % onomatopoeias.size()]
@@ -16,5 +18,6 @@ func _ready():
 	tween.start()
 	
 	yield(tween, "tween_completed")
+	yield($AudioStreamPlayer2D, "finished")
 	
 	queue_free()
