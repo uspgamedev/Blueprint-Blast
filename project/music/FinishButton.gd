@@ -12,3 +12,11 @@ func button_down():
 		Piano.get_node("RecordButton").text = "Start recording melody track"
 		current_track = Piano.get_current_node_track()
 		text = "Finish Melody Track"
+	else:
+		Piano.get_parent().remove_child(Piano)
+		Global.add_child(Piano)
+		Piano.hide()
+		Global.terrain_difficulty = 8
+		Global.terrain_length = 8000
+		Global.shooting_enabled = true
+		get_tree().change_scene("res://test/TestRaceWithAI.tscn")

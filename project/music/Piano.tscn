@@ -32,6 +32,7 @@ margin_bottom = 226.5
 custom_constants/separation = 100
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+editor/display_folded = true
 margin_right = 444.0
 margin_bottom = 120.0
 
@@ -128,6 +129,7 @@ is_base = true
 [node name="MelodyMusicMaker" parent="." instance=ExtResource( 12 )]
 
 [node name="HSlider" type="HSlider" parent="."]
+editor/display_folded = true
 margin_left = 791.737
 margin_top = 93.8657
 margin_right = 958.737
@@ -135,7 +137,6 @@ margin_bottom = 144.866
 min_value = 60.0
 max_value = 180.0
 value = 60.0
-ticks_on_borders = false
 script = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="HSlider"]
