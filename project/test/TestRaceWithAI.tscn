@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://race/RaceController.gd" type="Script" id=1]
 [ext_resource path="res://terrain/ProceduralTerrain.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://race/Goal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://race/WinnerListLabel.gd" type="Script" id=7]
+[ext_resource path="res://race/Instructions.tscn" type="PackedScene" id=8]
 
 [node name="RaceController" type="Node"]
 script = ExtResource( 1 )
@@ -24,13 +25,9 @@ current = true
 
 [node name="AICar" parent="RaceTrack" instance=ExtResource( 4 )]
 position = Vector2( 457.353, -100 )
-collision_mask = 6
-continuous_cd = 1
 
 [node name="AICar2" parent="RaceTrack" instance=ExtResource( 4 )]
 position = Vector2( 718.077, -100 )
-collision_mask = 6
-continuous_cd = 1
 
 [node name="GoalArea2D" parent="RaceTrack" instance=ExtResource( 5 )]
 
@@ -41,40 +38,40 @@ autostart = true
 
 [node name="Semaphore" type="Control" parent="HUD"]
 margin_left = 192.699
-margin_top = 513.524
+margin_top = 393.234
 margin_right = 232.699
-margin_bottom = 553.524
+margin_bottom = 433.234
 
 [node name="light1" type="TextureRect" parent="HUD/Semaphore"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 139.945
-margin_top = -373.834
-margin_right = 139.945
-margin_bottom = -373.834
+margin_left = 140.0
+margin_top = -377.0
+margin_right = 204.0
+margin_bottom = -313.0
 texture = ExtResource( 6 )
 
 [node name="light2" type="TextureRect" parent="HUD/Semaphore"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 282.484
-margin_top = -377.092
-margin_right = 346.484
-margin_bottom = -313.092
+margin_left = 280.0
+margin_top = -377.0
+margin_right = 344.0
+margin_bottom = -313.0
 texture = ExtResource( 6 )
 
 [node name="light3" type="TextureRect" parent="HUD/Semaphore"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 425.837
-margin_top = -378.721
-margin_right = 489.837
-margin_bottom = -314.721
+margin_left = 420.0
+margin_top = -377.0
+margin_right = 484.0
+margin_bottom = -313.0
 texture = ExtResource( 6 )
 
 [node name="light4" type="TextureRect" parent="HUD/Semaphore"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 566.746
-margin_top = -377.092
-margin_right = 630.746
-margin_bottom = -313.092
+margin_left = 560.0
+margin_top = -377.0
+margin_right = 624.0
+margin_bottom = -313.0
 texture = ExtResource( 6 )
 
 [node name="WinnerListLabel" type="RichTextLabel" parent="HUD"]
@@ -83,7 +80,12 @@ margin_top = 32.1193
 margin_right = 227.761
 margin_bottom = 154.119
 rect_scale = Vector2( 3, 3 )
-text = "GAME #5"
 script = ExtResource( 7 )
+
+[node name="Instructions" parent="." instance=ExtResource( 8 )]
+margin_left = 37.3027
+margin_top = 24.2852
+margin_right = 437.303
+margin_bottom = 174.285
 [connection signal="area_entered" from="RaceTrack/GoalArea2D" to="." method="_on_GoalArea2D_area_entered"]
 [connection signal="timeout" from="SemaphoreTimer" to="." method="_on_SemaphoreTimer_timeout"]
