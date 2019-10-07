@@ -14,6 +14,9 @@ func _ready():
 	for element in [self, front_wheel, back_wheel]:
 		element.contact_monitor = true
 		element.contacts_reported = 1
+		
+	
+	load_car_maker(Global.car_makers[randi() % Global.car_makers.size()])
 
 func _physics_process(delta):
 	update_movement()

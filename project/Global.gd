@@ -20,6 +20,26 @@ var line_2d_references := []
 
 onready var car_maker : CarMaker = CarMaker.new()
 
+func _ready():
+	if car_makers.empty():
+		var dir = Directory.new()
+		dir.open("res://cars")
+		dir.list_dir_begin()
+		
+		while true:
+			var file = dir.get_next()
+			if file == "":
+				break
+			elif not file.begins_with("."):
+				var new_car_maker = CarMaker.new()
+				var new_car_maker_file = File.new()
+				new_car_maker_file.open("res://cars/" + file, File.READ)
+				new_car_maker.load_from_string(new_car_maker_file)
+				new_car_maker_file.close()
+				car_makers.append(new_car_maker)
+		
+		dir.list_dir_end()
+
 func add_winner(car):
 	if not winners.has(car):
 		winners.append(car)

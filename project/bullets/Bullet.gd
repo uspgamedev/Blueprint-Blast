@@ -19,9 +19,23 @@ const MAX_AREA = 11425
 func _ready():
 	$Lifetime.wait_time = LIFETIME
 	$Lifetime.start()
-	$Lifetime.connect("timeout", self, "queue_free")
+	$Lifetime.connect("timeout", self, "destroy")
 	linear_velocity = Vector2(1, 0).rotated(global_rotation) * VELOCITY *\
 		lerp(VELOCITY_FACTOR[MIN], VELOCITY_FACTOR[MAX], area_ratio)
+	
+func _exit_tree():
+	var particles = $Particles2D
+	var particles_position = position
+	print(particles_position)
+	remove_child(particles)
+	get_parent().add_child(particles)
+	particles.emitting = false
+	particles.global_position = particles_position
+	print("_exit_tree")
+	
+func _process(delta):
+	print(global_position)
+	print(position)
 
 func explode():
 	for car in Global.car_refs:
@@ -35,6 +49,12 @@ func explode():
 		var damage = inverse_lerp(0, IMPULSE_FORCE, impulse) * DAMAGE *\
 			 lerp(DAMAGE_FACTOR[MIN], DAMAGE_FACTOR[MAX], area_ratio)
 		car.apply_damage(damage)
+		
+	destroy()	
+	
+	
+func destroy():
+	print("explode")
 	queue_free()
 
 # warning-ignore:unused_argument

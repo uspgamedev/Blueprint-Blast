@@ -58,7 +58,7 @@ func shoot(bullet_info, pos):
 					bullet.add_child(get_line2d(bullet_info["deco"][i], bullet_info["deco_color"][i], bullet_info["deco_width"][i]))
 
 			bullet.get_node("CollisionPolygon2D").polygon = bullet_info["hull"]
-		Global.add_child(bullet)
+		get_parent().add_child(bullet)
 		$BulletCooldown.start()
 
 
