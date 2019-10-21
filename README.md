@@ -1,4 +1,4 @@
-# Game 5 - LD 45 - USP GameDev
+# Blueprint Blast - LD 45 - USP GameDev
 
 Racing sideview game 2D, with physics, with spring joints.
 
